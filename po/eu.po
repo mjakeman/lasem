@@ -3,64 +3,100 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2013.
+# Asier Sarasua Garmendia <asier.sarasua@gmail.com>, 2019.
 #
 msgid ""
-msgstr ""
-"Project-Id-Version: lasem master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=lasem&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-30 17:44+0200\n"
-"PO-Revision-Date: 2013-08-30 17:39+0200\n"
-"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
-"Language-Team: Basque <librezale@librezale.org>\n"
+msgstr "Project-Id-Version: lasem master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/lasem/issues\n"
+"POT-Creation-Date: 2019-08-19 12:49+0000\n"
+"PO-Revision-Date: 2019-10-27 10:00+0100\n"
+"Last-Translator: Asier Sarasua Garmendia <asier.sarasua@gmail.com>\n"
+"Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.4\n"
 
-#: ../src/lasemrender.c:67
+#: ../src/lasemrender.c:70
 msgid "Output filename"
 msgstr "Irteerako fitxategi-izena"
 
-#: ../src/lasemrender.c:69
+#: ../src/lasemrender.c:72
 msgid "Output format"
 msgstr "Irteerako formatua"
 
-#: ../src/lasemrender.c:71
+#: ../src/lasemrender.c:74
 msgid "Pixel per inch"
 msgstr "Pixel hazbeteko"
 
-#: ../src/lasemrender.c:73
+#: ../src/lasemrender.c:76
 msgid "Zoom"
 msgstr "Zooma"
 
-#: ../src/lasemrender.c:75
+#: ../src/lasemrender.c:78
+msgid "Element id"
+msgstr "Elementuaren IDa"
+
+#: ../src/lasemrender.c:80
+msgid "Offset"
+msgstr "Desplazamendua"
+
+#: ../src/lasemrender.c:82
+msgid "Size"
+msgstr "Tamaina"
+
+#: ../src/lasemrender.c:84
 msgid "Debug domains"
 msgstr "Arazketaren domeinuak"
 
-#: ../src/lasemrender.c:105
-#, c-format
-msgid "Option parsing failed: %s\n"
-msgstr "Huts egin du aukera aztertzean: %s\n"
+#: ../src/lasemrender.c:97
+msgid "Invalid document type (SVG expected)"
+msgstr "Dokumentu mota baliogabea (SVG espero zen)"
 
-#: ../src/lasemrender.c:112
+#: ../src/lasemrender.c:103
 #, c-format
+msgid "Element '%s' not found"
+msgstr "'%s' elementua ez da aurkitu"
+
+#: ../src/lasemrender.c:154
+msgid "Option parsing failed:"
+msgstr "Aukeren analisiak huts egin du:"
+
+#: ../src/lasemrender.c:161
 msgid "Invalid zoom value"
 msgstr "Zoomaren baliogabeko balioa"
 
-#: ../src/lasemrender.c:119
-#, c-format
-msgid "One input file name is required\n"
-msgstr "Sarrerako fitxategi-izen bat behar da\n"
+#: ../src/lasemrender.c:170
+msgid "Invalid number of arguments for offset option"
+msgstr "Argumentu kopuru baliogabea desplazamenduaren aukerarako"
 
-#: ../src/lasemrender.c:130
-#, c-format
-msgid "Unknown format: %s\n"
-msgstr "Formatu ezezaguna: %s\n"
+#: ../src/lasemrender.c:180
+msgid "Invalid number of arguments for size option"
+msgstr "Argumentu kopuru baliogabea tamainaren aukerarako"
 
-#: ../src/lasemrender.c:255
+#: ../src/lasemrender.c:185
+msgid "Invalid export size"
+msgstr "Esportazio-tamaina baliogabea"
+
+#: ../src/lasemrender.c:193
+msgid "Missing input filename"
+msgstr "Sarrerako fitxategi-izena falta da"
+
+#: ../src/lasemrender.c:204
+msgid "Unknown format:"
+msgstr "Formatu ezezaguna:"
+
+#: ../src/lasemrender.c:244
+msgid ""
+"Don't know which format to use, please either give a format (-f) or an "
+"output filename (-o)"
+msgstr "Ez dakit zein formatu erabili, eman formatu bat (-f) edo irteerako fitxategi-izen bat (-o)"
+
+#: ../src/lasemrender.c:355
 #, c-format
-msgid "Can't load '%s'\n"
-msgstr "Ezin da '%s' kargatu\n"
+msgid "Can't load '%s'"
+msgstr "Ezin da '%s' kargatu"
+
+#~ msgid "One input file name is required\n"
+#~ msgstr "Sarrerako fitxategi-izen bat behar da\n"
