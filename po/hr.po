@@ -1,0 +1,102 @@
+# Croatian translation for lasem.
+# Copyright (C) 2020 lasem's COPYRIGHT HOLDER
+# This file is distributed under the same license as the lasem package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: lasem master\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/lasem/issues\n"
+"POT-Creation-Date: 2020-07-12 12:13+0000\n"
+"PO-Revision-Date: 2020-09-16 00:57+0200\n"
+"Language-Team: Croatian <hr@li.org>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 "
+"&& n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
+"X-Generator: Poedit 2.3\n"
+
+#: ../src/lasemrender.c:70
+msgid "Output filename"
+msgstr "Izlazni naziv datoteke"
+
+#: ../src/lasemrender.c:72
+msgid "Output format"
+msgstr "Izlazni format"
+
+#: ../src/lasemrender.c:74
+msgid "Pixel per inch"
+msgstr "Piksela po inču"
+
+#: ../src/lasemrender.c:76
+msgid "Zoom"
+msgstr "Uvećanje"
+
+#: ../src/lasemrender.c:78
+msgid "Element id"
+msgstr "ID elementa"
+
+#: ../src/lasemrender.c:80
+msgid "Offset"
+msgstr "Pomak"
+
+#: ../src/lasemrender.c:82
+msgid "Size"
+msgstr "Veličina"
+
+#: ../src/lasemrender.c:84
+msgid "Debug domains"
+msgstr "Domene otklanjanja grešaka"
+
+#: ../src/lasemrender.c:97
+msgid "Invalid document type (SVG expected)"
+msgstr "Nevaljana vrsta dokumenta (SVG je očekivana)"
+
+#: ../src/lasemrender.c:103
+#, c-format
+msgid "Element '%s' not found"
+msgstr "Element '%s' nije pronađen"
+
+#: ../src/lasemrender.c:154
+msgid "Option parsing failed:"
+msgstr "Obrada mogućnosti neuspjela:"
+
+#: ../src/lasemrender.c:161
+msgid "Invalid zoom value"
+msgstr "Nevaljana vrijednost uvećanja"
+
+#: ../src/lasemrender.c:170
+msgid "Invalid number of arguments for offset option"
+msgstr "Neispravan broj argumenata za mogućnost pomaka"
+
+#: ../src/lasemrender.c:180
+msgid "Invalid number of arguments for size option"
+msgstr "Neispravan broj argumenata za mogućnost veličine"
+
+#: ../src/lasemrender.c:185
+msgid "Invalid export size"
+msgstr "Nevaljana veličina izvoza"
+
+#: ../src/lasemrender.c:193
+msgid "Missing input filename"
+msgstr "Nedostaje ulazni naziv datoteke"
+
+#: ../src/lasemrender.c:204
+msgid "Unknown format:"
+msgstr "Nepoznat format:"
+
+#: ../src/lasemrender.c:244
+msgid ""
+"Don't know which format to use, please either give a format (-f) or an "
+"output filename (-o)"
+msgstr ""
+"Ne znam koji format koristiti, navedite format (-f) ili naziv izlazne "
+"datoteke (-o)"
+
+#: ../src/lasemrender.c:355
+#, c-format
+msgid "Can't load '%s'"
+msgstr "Nemoguće učitavanje '%s'"
