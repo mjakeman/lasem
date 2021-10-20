@@ -1,4 +1,21 @@
-Lasem aims to be a C/Gobject based SVG/Mathml renderer and editor, supporting CSS
+# Lasem
+A rendering library for mathematical equations.
+
+## Status
+Development on the upstream lasem library has been halted and the repository
+is now read-only. This is an attempt at resurrecting lasem as a general purpose
+library for rendering mathematical equations.
+
+The current roadmap is:
+ - Port the build system to meson (in progress)
+    - Currently `lasem-render` can be built using meson
+ - Deprecate and remove the old autotools build system
+ - Port the test suite
+ - Create a sample program demonstrating integration with GTK 4
+ - Release "version 0.7"
+
+## Summary
+Lasem aims to be a C/GObject based SVG/Mathml renderer and editor, supporting CSS
 style sheets (only rendering is implemented for now). It uses cairo and pango as
 it's rendering abstraction layer, and then support numerous output formats: xlib,
 PNG, SVG, PDF, PS, EPS...
