@@ -23,7 +23,7 @@ libitex2mml_sources = [
 install_headers('y.tab.h')
 
 libitex2mml = shared_library(
-	'libitex2mml',
+	'itex2mml',
 	libitex2mml_sources,
 	install : true
 )

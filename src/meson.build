@@ -260,7 +260,7 @@ sources = [
 install_headers(lasem_dom_headers, subdir : 'lasem')
 
 liblasem = shared_library(
-    'liblasem',
+    'lasem',
     sources,
     dependencies : deps,
     #include_directories : include_directories('@0@/..'.format(meson.current_build_dir())),
@@ -269,3 +269,11 @@ liblasem = shared_library(
     install : true
 )
 
+liblasem_dep = declare_dependency(link_with : liblasem)
+
+lasemrender = executable(
+    'lasem_render',
+    'lasemrender.c',
+    dependencies : [liblasem_dep, deps],
+    install : true
+)
