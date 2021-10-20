@@ -16,6 +16,8 @@ configure_file(output : 'config.h',
 # TODO: Features
 # TODO: Compiler Warnings
 
+subdir('itex2mml')
+
 deps = [
 	dependency('glib-2.0'),
 	dependency('gobject-2.0'),
@@ -23,8 +25,9 @@ deps = [
 	dependency('gdk-pixbuf-2.0', version : '>= 2.16'),
 	dependency('cairo', version : '>= 1.2'),
 	dependency('pangocairo', version : '>= 1.16.0'),
-	dependency('libxml-2.0')
+	dependency('libxml-2.0'),
+	libitex2mml_dep
 ]
 
-subdir('itex2mml')
-#subdir('src')
+
+subdir('src')
