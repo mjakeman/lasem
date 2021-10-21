@@ -1,6 +1,8 @@
 # Adapted from glib's tests build file
 # https://gitlab.gnome.org/GNOME/glib/-/blob/main/tests/meson.build
 
+if get_option('tests').enabled()
+
 test_deps = [
 	deps,
 	liblasem_dep
@@ -35,3 +37,11 @@ foreach test_name, extra_args : tests
 
 endforeach
 
+# lasem-test program
+lasemtest = executable(
+    'lsm-test',
+    'lsmtest.c',
+    dependencies : test_deps
+)
+
+endif
