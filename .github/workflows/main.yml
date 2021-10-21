@@ -28,15 +28,21 @@ jobs:
         with:
           python-version: '3.x'
       - run: pip install meson ninja
+
       - name: Install dependencies
         run: sudo apt-get install -y libpango1.0-dev libxml2-dev
-      - run: meson setup _build
+
+      - name: Meson Setup
+        run: meson setup _build -Dtests=enabled
         env:
           CC: gcc
+
       - name: Meson Build
         run: meson compile -C _build
+
       - name: Meson Test
         run: meson test -C _build -v
+
       - uses: actions/upload-artifact@v1
         if: failure()
         with:

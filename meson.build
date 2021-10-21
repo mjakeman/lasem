@@ -49,13 +49,14 @@ deps = [
 # subdirectories
 subdir('src')
 subdir('po')
-# subdir('tests')
+subdir('tests')
 subdir('docs')
 
 summary(
 	{
-		'API Docs': get_option('docs'),
-		'Introspection': get_option('introspection')
+		'API Docs': get_option('docs').enabled(),
+		'Introspection': get_option('introspection').enabled(),
+		'Tests': get_option('tests').enabled()
 	},
 	section: 'Options'
 )
