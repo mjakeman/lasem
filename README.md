@@ -9,10 +9,27 @@ library for rendering mathematical equations.
 The current roadmap is:
  - Port the build system to meson (in progress)
     - Currently `lasem-render` can be built using meson
+    - Introspection, Locale, and Headers are installed correctly
  - Deprecate and remove the old autotools build system
  - Port the test suite
  - Create a sample program demonstrating integration with GTK 4
  - Release "version 0.7"
+
+## Build
+Lasem can be built using meson. Run the following commands:
+
+```sh
+# configure
+meson _build
+
+# build
+ninja -C _build
+
+# install
+ninja -C _build install
+```
+
+GObject Introspection can be controlled with `-Dintrospection=enabled|disabled`. 
 
 ## Summary
 Lasem aims to be a C/GObject based SVG/Mathml renderer and editor, supporting CSS
