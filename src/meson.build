@@ -25,7 +25,6 @@ lasem_dom_sources = [
 ]
 
 lasem_mathml_sources = [
-    'lsmmathmlenumtypes.c',
     'lsmmathmlenums.c',
     'lsmmathmltraits.c',
     'lsmmathmlattributes.c',
@@ -65,7 +64,6 @@ lasem_mathml_sources = [
 ]
 
 lasem_svg_sources = [
-    'lsmsvgenumtypes.c',
     'lsmsvgenums.c',
     'lsmsvgtraits.c',
     'lsmsvgstyle.c',
@@ -248,31 +246,60 @@ lasem_svg_headers = [
     'lsmsvgfiltersurface.h',
 ]
 
+lasem_header_install_dir = 'lasem-' + lasem_api_version
+
+# custom targets (glib mkenums)
+gnome = import('gnome')
+
+lasem_dom_types = gnome.mkenums_simple(
+	'lsmdomenumtypes',
+	sources : lasem_dom_headers,
+	install_dir : join_paths(get_option('includedir'), lasem_header_install_dir),
+	install_header : true
+)
+
+lasem_mathml_types = gnome.mkenums_simple('lsmmathmlenumtypes', sources : lasem_mathml_headers)
+lasem_svg_types = gnome.mkenums_simple('lsmsvgenumtypes', sources : lasem_svg_headers)
+
+# combine sources
 sources = [
+	# Sources
     lasem_dom_sources,
     lasem_mathml_sources,
     lasem_svg_sources,
+
+    # Headers
     lasem_mathml_headers,
-    lasem_svg_headers
+    lasem_svg_headers,
+
+    # Built Sources
+	lasem_dom_types,
+	lasem_mathml_types,
+	lasem_svg_types
 ]
 
-# TODO: Add API Version / Fix Headers
-install_headers(lasem_dom_headers, subdir : 'lasem')
+# install headers
+install_headers(lasem_dom_headers, subdir : lasem_header_install_dir)
 
+
+# TODO: gobject introspection
+
+
+# lasem shared library
 liblasem = shared_library(
-    'lasem',
+    'lasem-' + lasem_api_version,
     sources,
     dependencies : deps,
-    #include_directories : include_directories('@0@/..'.format(meson.current_build_dir())),
-    link_args : ['-lm'],
-    #link_depends : mapfile,
+    link_args : ['-lm'], # link with libmath (do this elsewhere?)
     install : true
 )
 
 liblasem_dep = declare_dependency(link_with : liblasem)
 
+
+# lasem-render program
 lasemrender = executable(
-    'lasem_render',
+    'lasem-render-' + lasem_api_version,
     'lasemrender.c',
     dependencies : [liblasem_dep, deps],
     install : true

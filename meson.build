@@ -26,7 +26,6 @@ add_project_arguments('-DGETTEXT_PACKAGE="' + gettext_package + '"', language: '
 
 add_project_arguments('-DG_LOG_DOMAIN="Lasem"', language : 'c')
 add_project_arguments('-DPACKAGE_LOCALE_DIR="' + pkg_locale_dir + '"', language : 'c')
-add_project_arguments('-DPACKAGE_DATA_DIR="' + datadir + '"', language : 'c')
 
 subdir('itex2mml')
 
@@ -42,3 +41,10 @@ deps = [
 ]
 
 subdir('src')
+
+# TODO: Configuration
+
+# Yacc:                   bison -y
+# Lex:                    flex
+# Compiler:               gcc
+# Compiler flags:         -g -O2 -Wformat=2 -Wmissing-format-attribute -Wextra -Wundef -Wstrict-prototypes -Wnested-externs -Wchar-subscripts -Wwrite-strings -Wmissing-noreturn -Wmissing-declarations -Wcast-align -Winline -Wno-pointer-sign -Wno-unused-parameter -Wno-sign-compare -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include -I/usr/include/sysprof-4 -I/usr/include/libmount -I/usr/include/blkid -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/libpng16 -I/usr/include/cairo -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/harfbuzz -I/usr/include/libxml2 -I/usr/include/pango-1.0 -I/usr/include/fribidi -pthread
