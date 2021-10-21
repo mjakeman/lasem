@@ -54,7 +54,8 @@ subdir('docs')
 
 summary(
 	{
-		'Introspection': get_option('introspection'),
+		'API Docs': get_option('docs'),
+		'Introspection': get_option('introspection')
 	},
 	section: 'Options'
 )

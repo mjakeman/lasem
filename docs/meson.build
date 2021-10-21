@@ -6,6 +6,4 @@ manpage_data = [
 install_man(manpage_data)
 
 # install api docs
-if get_option('docs').enabled()
-
-endif
+subdir('reference')

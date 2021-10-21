@@ -1,0 +1,17 @@
+[library]
+version = "@VERSION@"
+description = "SVG and MathML rendering library"
+authors = "Lasem Developers"
+license = "LGPL-2.0-or-later"
+browse_url = "https://github.com/mjakeman/lasem/"
+repository_url = "https://github.com/mjakeman/lasem.git"
+devhelp = true
+search_index = true
+dependencies = [
+    "GObject-2.0"
+]
+
+[dependencies."GObject-2.0"]
+name = "GObject"
+description = "The base type system library"
+docs_url = "https://docs.gtk.org/gobject/"

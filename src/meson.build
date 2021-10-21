@@ -300,7 +300,8 @@ if get_option('introspection').enabled()
 		'--quiet'
 	]
 
-	gnome.generate_gir(
+	# used later by gi-docgen
+	lasem_gir = gnome.generate_gir(
 		liblasem,
 		sources: [lasem_dom_sources, lasem_dom_headers],
 		nsversion: lasem_api_version,
