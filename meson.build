@@ -19,7 +19,9 @@ configure_file(output : 'config.h',
 # TODO: Compiler Warnings
 
 datadir = get_option('datadir')
-pkg_locale_dir = join_paths(datadir, 'lasem', 'locale')
+girdir = get_option('datadir') / 'gir-1.0'
+typelibdir = get_option('libdir') / 'girepository-1.0'
+pkg_locale_dir = datadir / 'lasem' / 'locale'
 
 gettext_package = 'lasem-' + lasem_api_version
 add_project_arguments('-DGETTEXT_PACKAGE="' + gettext_package + '"', language: 'c')

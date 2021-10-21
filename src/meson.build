@@ -281,10 +281,6 @@ sources = [
 # install headers
 install_headers(lasem_dom_headers, subdir : lasem_header_install_dir)
 
-
-# TODO: gobject introspection
-
-
 # lasem shared library
 liblasem = shared_library(
     'lasem-' + lasem_api_version,
@@ -295,6 +291,31 @@ liblasem = shared_library(
 )
 
 liblasem_dep = declare_dependency(link_with : liblasem)
+
+# gobject introspection
+if get_option('introspection').enabled()
+
+	lasem_gir_extra_args = [
+		'--c-include=lsm.h',
+		'--quiet'
+	]
+
+	gnome.generate_gir(
+		liblasem,
+		sources: [lasem_dom_sources, lasem_dom_headers],
+		nsversion: lasem_api_version,
+		namespace: 'Lasem',
+		symbol_prefix: 'lsm',
+		identifier_prefix: 'Lsm',
+		link_with: liblasem,
+		includes: ['GObject-2.0', 'cairo-1.0', 'Gio-2.0', 'Pango-1.0', 'GdkPixbuf-2.0'],
+		install: true,
+		install_dir_gir: girdir,
+		install_dir_typelib: typelibdir,
+		extra_args: lasem_gir_extra_args
+	)
+
+endif
 
 
 # lasem-render program
