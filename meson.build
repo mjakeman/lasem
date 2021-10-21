@@ -9,28 +9,32 @@ as_micro_version = ver_arr[2]
 
 lasem_api_version = as_major_version + '.' + as_minor_version
 
+# setup directories
+datadir = get_option('datadir')
+libdir = get_option('libdir')
+girdir = get_option('datadir') / 'gir-1.0'
+typelibdir = libdir / 'girepository-1.0'
+pkg_locale_dir = datadir / 'lasem' / 'locale'
+
+gettext_package = 'lasem-' + lasem_api_version
+
+# config.h file
 conf = configuration_data()
-# Surround the version in quotes to make it a C string
 conf.set_quoted('VERSION', as_version)
-configure_file(output : 'config.h',
-               configuration : conf)
+conf.set_quoted('GETTEXT_PACKAGE', gettext_package)
+conf.set_quoted('PACKAGE_LOCALE_DIR', pkg_locale_dir)
+
+configure_file(output : 'config.h', configuration : conf)
+
+add_project_arguments('-DG_LOG_DOMAIN="Lasem"', language : 'c')
 
 # TODO: Features
 # TODO: Compiler Warnings
 
-datadir = get_option('datadir')
-girdir = get_option('datadir') / 'gir-1.0'
-typelibdir = get_option('libdir') / 'girepository-1.0'
-pkg_locale_dir = datadir / 'lasem' / 'locale'
-
-gettext_package = 'lasem-' + lasem_api_version
-add_project_arguments('-DGETTEXT_PACKAGE="' + gettext_package + '"', language: 'c')
-
-add_project_arguments('-DG_LOG_DOMAIN="Lasem"', language : 'c')
-add_project_arguments('-DPACKAGE_LOCALE_DIR="' + pkg_locale_dir + '"', language : 'c')
-
+# build itex2mml
 subdir('itex2mml')
 
+# dependencies
 deps = [
 	dependency('glib-2.0'),
 	dependency('gobject-2.0'),
@@ -42,7 +46,11 @@ deps = [
 	libitex2mml_dep
 ]
 
+# subdirectories
 subdir('src')
+subdir('po')
+# subdir('tests')
+# subdir('docs')
 
 # TODO: Configuration
 
