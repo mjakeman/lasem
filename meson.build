@@ -50,7 +50,7 @@ deps = [
 subdir('src')
 subdir('po')
 # subdir('tests')
-# subdir('docs')
+subdir('docs')
 
 summary(
 	{

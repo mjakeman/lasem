@@ -1,1 +1,2 @@
 option('introspection', type: 'feature', value: 'auto', yield: true)
+option('docs', type: 'feature', value: 'disabled')
