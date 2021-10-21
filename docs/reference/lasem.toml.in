@@ -15,3 +15,8 @@ dependencies = [
 name = "GObject"
 description = "The base type system library"
 docs_url = "https://docs.gtk.org/gobject/"
+
+[extra]
+content_files = [
+  "overview.md"
+]

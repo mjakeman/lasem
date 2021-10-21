@@ -3,7 +3,9 @@
 
 if get_option('docs').enabled()
 
-expand_content_md_files = []
+expand_content_md_files = [
+	'overview.md'
+]
 
 toml_data = configuration_data()
 toml_data.set('VERSION', meson.project_version())
