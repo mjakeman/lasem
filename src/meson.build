@@ -290,7 +290,10 @@ liblasem = shared_library(
     install : true
 )
 
-liblasem_dep = declare_dependency(link_with : liblasem)
+liblasem_dep = declare_dependency(
+	link_with : liblasem,
+	include_directories : '.'
+)
 
 # gobject introspection
 if get_option('introspection').enabled()

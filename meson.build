@@ -49,7 +49,7 @@ deps = [
 # subdirectories
 subdir('src')
 subdir('po')
-# subdir('tests')
+subdir('tests')
 subdir('docs')
 
 summary(
