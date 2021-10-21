@@ -28,6 +28,8 @@ jobs:
         with:
           python-version: '3.x'
       - run: pip install meson ninja
+      - name: Install dependencies
+        run: sudo apt-get install -y libpango1.0-dev libxml2-dev
       - run: meson setup _build
         env:
           CC: gcc
