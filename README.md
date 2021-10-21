@@ -29,7 +29,9 @@ ninja -C _build
 ninja -C _build install
 ```
 
-GObject Introspection can be controlled with `-Dintrospection=enabled|disabled`. 
+GObject Introspection can be controlled with `-Dintrospection=enabled|disabled`.
+
+The API Reference can be generated with `-Ddocs=enabled`.
 
 ## Summary
 Lasem aims to be a C/GObject based SVG/Mathml renderer and editor, supporting CSS
