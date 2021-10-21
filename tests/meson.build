@@ -18,8 +18,8 @@ tests = {
 	'filter' : {},
 	'suite' : {
 	    'c_args': [
-	    	'-DSUITE_DATA_DIRECTORY="' + meson.current_source_dir() + '/tests/data"',
-	    	'-DSUITE_OPTION_FILE="' + meson.current_source_dir() + '/tests/suite.ini"'
+	    	'-DSUITE_DATA_DIRECTORY="' + meson.current_source_dir() + '/data"',
+	    	'-DSUITE_OPTION_FILE="' + meson.current_source_dir() + '/suite.ini"'
     	],
 	}
 }
