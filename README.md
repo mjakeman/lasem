@@ -1,4 +1,6 @@
 # Lasem
+[![CI](https://github.com/mjakeman/lasem/actions/workflows/main.yml/badge.svg)](https://github.com/mjakeman/lasem/actions/workflows/main.yml)
+
 A rendering library for mathematical equations.
 
 ## Status
