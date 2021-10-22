@@ -31,7 +31,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt-get install -y libpango1.0-dev gobject-introspection
+          sudo apt-get install -y libpango1.0-dev gobject-introspection libgirepository1.0-dev
           pip install toml jinja2 typogrify
 
       - name: Meson Setup
