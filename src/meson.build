@@ -327,11 +327,11 @@ pkgc = import('pkgconfig')
 
 pkgc.generate(
 	libraries: [liblasem],
+	filebase: 'lasem-' + lasem_api_version,
 	subdirs: lasem_header_install_dir,
 	version: meson.project_version(),
 	name: 'Lasem',
 	description: 'SVG and MathML rendering library',
-	# TODO: Check these are correct
 	requires: 'glib-2.0 gobject-2.0 cairo >= 1.2 pangocairo libxml-2.0 gdk-pixbuf-2.0',
 	install_dir: libdir / 'pkgconfig'
 )
