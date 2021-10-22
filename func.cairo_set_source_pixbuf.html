@@ -1,0 +1,240 @@
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lasem.cairo_set_source_pixbuf</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8" />
+
+  
+  <meta property="og:type" content="website"/>
+
+  
+
+  
+  <meta property="og:title" content="Lasem.cairo_set_source_pixbuf"/>
+  <meta property="og:description" content="Reference for Lasem.cairo_set_source_pixbuf"/>
+  <meta name="twitter:title" content="Lasem.cairo_set_source_pixbuf"/>
+  <meta name="twitter:description" content="Reference for Lasem.cairo_set_source_pixbuf"/>
+
+
+  
+  <meta name="twitter:card" content="summary"/>
+
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css" />
+
+  
+
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    <nav class="sidebar devhelp-hidden">
+      
+      
+      <div class="search section">
+        <form id="search-form" autocomplete="off">
+          <input id="search-input" type="text" name="do-not-autocomplete" placeholder="Click, or press 's' to search" autocomplete="off"/>
+        </form>
+      </div>
+      
+      <div class="section namespace">
+        <h3><a href="index.html">Lasem</a></h3>
+        <p>API Version: 0.7</p>
+        
+        <p>Library Version: 0.7.0</p>
+        
+      </div>
+      
+
+<div class="section">
+  <h5>Functions</h5>
+  <div class="links">
+  
+  </div>
+</div>
+
+
+    </nav>
+    
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Function </h3>
+    <h1><a href="index.html">Lasem</a><span class="sep"></span>cairo_set_source_pixbuf</h1>
+  </header>
+
+  <section>
+    <div class="declaration toggle-wrapper">
+      <h4 id="declaration" style="display:flex;">
+        Declaration
+        <a href="#declaration" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"></span>
+<span class="n">lsm_cairo_set_source_pixbuf</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">cairo_t</span><span class="o">*</span><span class="w"> </span><span class="n">cairo</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">GdkPixbuf</span><span class="o">*</span><span class="w"> </span><span class="n">pixbuf</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">pixbuf_x</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">pixbuf_y</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 id="description" style="display:flex;">
+        Description
+        <a href="#description" class="anchor"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        <p>Sets the given pixbuf as the source pattern for <code>cairo</code>.</p>
+<p>The pattern has an extend mode of <code>CAIRO_EXTEND_NONE</code> and is aligned
+so that the origin of <code>pixbuf</code> is <code>pixbuf_x</code>, <code>pixbuf_y</code>.</p>
+      </div>
+
+      <div class="docblock">
+        <table>
+          
+          
+          <tr><td>Available since:</td><td>0.4</td></tr>
+          
+          
+        </table>
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <table class="arguments">
+          
+          <tr class="arg-name">
+            <td><code>cairo</code></td>
+            <td><a href="javascript:void(0)" data-link="struct.Context.html" data-namespace="cairo" class="external"><code>cairo_t</code></a></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td><p>A cairo&nbsp;context.</p></td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          <tr><td>&nbsp;</td><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+          
+          
+          <tr class="arg-name">
+            <td><code>pixbuf</code></td>
+            <td><a href="javascript:void(0)" data-link="class.Pixbuf.html" data-namespace="GdkPixbuf" class="external"><code>GdkPixbuf</code></a></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td><p>A <code>GdkPixbuf</code>.</p></td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          <tr><td>&nbsp;</td><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+          
+          
+          <tr class="arg-name">
+            <td><code>pixbuf_x</code></td>
+            <td><code>double</code></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td><p>X coordinate of location to place upper left corner of <code>pixbuf</code>.</p></td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <tr class="arg-name">
+            <td><code>pixbuf_y</code></td>
+            <td><code>double</code></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td><p>Y coordinate of location to place upper left corner of <code>pixbuf</code>.</p></td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        </table>
+      </div>
+    </div>
+    
+
+    
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lasem &ndash; 0.7: Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8" />
+
+  
+  <meta property="og:type" content="website"/>
+
+  
+
+  
+  <meta property="og:title" content="Lasem: Overview"/>
+  <meta property="og:description" content="Reference for Lasem-0.7: Overview"/>
+  <meta name="twitter:title" content="Lasem: Overview"/>
+  <meta name="twitter:description" content="Reference for Lasem-0.7: Overview"/>
+
+
+  
+  <meta name="twitter:card" content="summary"/>
+
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css" />
+
+  
+
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    <nav class="sidebar devhelp-hidden">
+      
+      
+      <div class="search section">
+        <form id="search-form" autocomplete="off">
+          <input id="search-input" type="text" name="do-not-autocomplete" placeholder="Click, or press 's' to search" autocomplete="off"/>
+        </form>
+      </div>
+      
+      <div class="section namespace">
+        <h3><a href="index.html">Lasem</a></h3>
+        <p>API Version: 0.7</p>
+        
+        <p>Library Version: 0.7.0</p>
+        
+      </div>
+      
+      
+    </nav>
+    
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <section>
+    <div class="docblock">
+    <h1 id="overview">Overview<a class="md-anchor" href="#overview" title="Permanent link"></a></h1>
+<p>Lasem is a GObject based library for the rendering and edition of Mathml and
+<span class="caps">SVG</span> documents. It supports gobject-introspection, making it usable directly
+from <a href="https://pygobject.readthedocs.io/en/latest/">Python (PyGObject)</a>,
+<a href="https://gjs.guide/">Javascript (<span class="caps">GJS</span>)</a>, or <a href="https://wiki.gnome.org/Projects/Vala">Vala</a>.</p>
+<h2 id="building-and-debugging-lasem">Building and debugging Lasem<a class="md-anchor" href="#building-and-debugging-lasem" title="Permanent link"></a></h2>
+<p>On <span class="caps">UNIX</span>, Lasem uses the standard <span class="caps">GNU</span> build system, using
+<strong>autoconf</strong> for package configuration and resolving portability issues,
+<strong>automake</strong> for building makefiles that comply with the <span class="caps">GNU</span> Coding Standards,
+and <strong>libtool</strong> for building shared libraries on multiple platforms. The normal
+sequence for compiling and installing the Lasem library is&nbsp;thus:</p>
+<div class="codehilite"><pre><span></span><code>./configure
+make
+make install
+</code></pre></div>
+
+<p>The standard options provided by <strong><span class="caps">GNU</span> autoconf</strong> may be passed to the
+<code>configure</code> script. Please see the <strong>autoconf</strong> documentation or run
+<code>./configure --help</code> for information about the standard&nbsp;options.</p>
+<p>The LSM_DEBUG environment variable can be set to a colon
+separated list of debugging domains, which will make Lasem
+print out different types of debugging informations to the
+console. For example, the following command before running an
+Lasem based application will make Lasem print out <span class="caps">DOM</span>
+related&nbsp;informations:</p>
+<p><code>export LSM_DEBUG=dom</code></p>
+<h2 id="required-fonts">Required fonts<a class="md-anchor" href="#required-fonts" title="Permanent link"></a></h2>
+<p>For the Mathml rendering, the following ttf fonts should be installed: cmr10, cmmi10, cmex10 and cmsy10.
+They are provided by the lyx-fonts package in fedora, and the ttf-lyx package in&nbsp;debian/ubuntu.</p>
+    </div>
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+</body>
+</html>
