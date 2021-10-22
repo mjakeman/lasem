@@ -20,7 +20,7 @@ The current roadmap is:
 ## Build
 Lasem can be built using meson. Run the following commands:
 
-```sh
+```bash
 # configure (see below for options)
 meson _build
 
