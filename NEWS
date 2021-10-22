@@ -1,3 +1,8 @@
+Release 0.7.0
+=============
+  * build: port build system to meson
+  * increase api version to 0.7 to avoid conflicts with lasem packages
+
 Release 0.5.1
 =============
 

@@ -1,7 +1,7 @@
 # Lasem
 [![CI](https://github.com/mjakeman/lasem/actions/workflows/main.yml/badge.svg)](https://github.com/mjakeman/lasem/actions/workflows/main.yml)
 
-A rendering library for mathematical equations.
+A SVG and MathML rendering library for mathematical equations.
 
 ## Status
 Development on the upstream lasem library has been halted and the repository
@@ -9,31 +9,36 @@ is now read-only. This is an attempt at resurrecting lasem as a general purpose
 library for rendering mathematical equations.
 
 The current roadmap is:
- - Port the build system to meson (in progress)
-    - Currently `lasem-render` can be built using meson
-    - Introspection, Locale, and Headers are installed correctly
- - Deprecate and remove the old autotools build system
- - Port the test suite
- - Create a sample program demonstrating integration with GTK 4
- - Release "version 0.7"
+ - [X] Port the build system to meson (in progress)
+    - [X] Currently `lasem-render` can be built using meson
+    - [X] Introspection, Locale, and Headers are installed correctly
+ - [X] Deprecate and remove the old autotools build system
+ - [X] Port the test suite
+ - [ ] Create a sample program demonstrating integration with GTK 4
+ - [ ] Release "version 0.7"
 
 ## Build
 Lasem can be built using meson. Run the following commands:
 
-```sh
-# configure
+```bash
+# configure (see below for options)
 meson _build
 
 # build
-ninja -C _build
+meson compile -C _build
 
 # install
-ninja -C _build install
+meson install -C _build
+
+# run tests (if enabled)
+meson test -C _build -v
 ```
 
-GObject Introspection can be controlled with `-Dintrospection=enabled|disabled`.
+GObject Introspection data can be generated with `-Dintrospection=enabled`.
 
 The API Reference can be generated with `-Ddocs=enabled`.
+
+Tests can be built with `-Dtests=enabled`.
 
 ## Summary
 Lasem aims to be a C/GObject based SVG/Mathml renderer and editor, supporting CSS
