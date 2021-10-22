@@ -103,12 +103,14 @@ subdir('src')
 subdir('po')
 subdir('tests')
 subdir('docs')
+subdir('demo')
 
 summary(
 	{
 		'API Docs': get_option('docs').enabled(),
 		'Introspection': get_option('introspection').enabled(),
-		'Tests': get_option('tests').enabled()
+		'Tests': get_option('tests').enabled(),
+		'Demo': get_option('demo').enabled(),
 	},
 	section: 'Options'
 )

@@ -1,3 +1,4 @@
 option('introspection', type: 'feature', value: 'auto', yield: true)
 option('tests', type: 'feature', value: 'auto')
+option('demo', type: 'feature', value: 'auto')
 option('docs', type: 'feature', value: 'disabled')
