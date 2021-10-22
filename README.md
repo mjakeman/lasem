@@ -1,5 +1,6 @@
 # Lasem
 [![CI](https://github.com/mjakeman/lasem/actions/workflows/main.yml/badge.svg)](https://github.com/mjakeman/lasem/actions/workflows/main.yml)
+[![Docs](https://img.shields.io/badge/documentation-visit-success)](https://www.mattjakeman.com/lasem/)
 
 A SVG and MathML rendering library for mathematical equations.
 
@@ -16,6 +17,10 @@ The current roadmap is:
  - [X] Port the test suite
  - [ ] Create a sample program demonstrating integration with GTK 4
  - [ ] Release "version 0.7"
+
+## Documentation
+The documentation for the `master` branch can be found
+[here](https://www.mattjakeman.com/lasem/).
 
 ## Build
 Lasem can be built using meson. Run the following commands:
