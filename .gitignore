@@ -51,3 +51,4 @@ perf.data.old
 test-driver
 compile
 subprojects/gi-docgen
+api-docs
