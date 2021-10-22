@@ -30,10 +30,12 @@ jobs:
       - run: pip install meson ninja
 
       - name: Install dependencies
-        run: sudo apt-get install -y libpango1.0-dev libxml2-dev
+        run: |
+          sudo apt-get install -y libpango1.0-dev gobject-introspection
+          pip install toml jinja2 typogrify
 
       - name: Meson Setup
-        run: meson setup _build -Dtests=enabled
+        run: meson setup _build -Dtests=enabled -Ddocs=enabled -Dintrospection=enabled
         env:
           CC: gcc
 
@@ -48,3 +50,13 @@ jobs:
         with:
           name: Linux_Meson_Testlog
           path: _build/meson-logs/testlog.txt
+
+      - name: Copy API Reference
+        run: cp -r ./_build/docs/reference/lasem-* ./api-docs
+
+      - name: Deploy API Reference
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/master' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./api-docs
