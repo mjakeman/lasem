@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get install -y libpango1.0-dev gobject-introspection libgirepository1.0-dev
-          pip install toml jinja2 typogrify
+          pip install jinja2 markupsafe toml typogrify markdown pygments
 
       - name: Meson Setup
         run: meson setup _build -Dtests=enabled -Ddocs=enabled -Dintrospection=enabled
