@@ -15,7 +15,7 @@ The current roadmap is:
     - [X] Introspection, Locale, and Headers are installed correctly
  - [X] Deprecate and remove the old autotools build system
  - [X] Port the test suite
- - [ ] Create a sample program demonstrating integration with GTK 4
+ - [X] Create a sample program demonstrating integration with GTK 4
  - [ ] Release "version 0.7"
 
 ## Documentation
@@ -44,6 +44,8 @@ GObject Introspection data can be generated with `-Dintrospection=enabled`.
 The API Reference can be generated with `-Ddocs=enabled`.
 
 Tests can be built with `-Dtests=enabled`.
+
+The demo viewer can be built with `-Ddemo=enabled`.
 
 ## Summary
 Lasem aims to be a C/GObject based SVG/Mathml renderer and editor, supporting CSS

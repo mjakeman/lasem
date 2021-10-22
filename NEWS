@@ -1,6 +1,7 @@
 Release 0.7.0
 =============
   * build: port build system to meson
+  * demo: add a gtk4 mathml viewer demo
   * increase api version to 0.7 to avoid conflicts with lasem packages
 
 Release 0.5.1
