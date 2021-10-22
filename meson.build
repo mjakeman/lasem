@@ -28,8 +28,60 @@ configure_file(output : 'config.h', configuration : conf)
 
 add_project_arguments('-DG_LOG_DOMAIN="Lasem"', language : 'c')
 
-# TODO: Features
-# TODO: Compiler Warnings
+cc = meson.get_compiler('c')
+
+global_c_args = []
+test_c_args = [
+	'-Wformat=2',
+	'-Wmissing-format-attribute',
+	'-Wextra',
+	'-Wundef',
+	'-Wstrict-prototypes -Wnested-externs',
+	'-Wchar-subscripts -Wwrite-strings',
+	'-Wmissing-noreturn',
+	'-Wmissing-declarations',
+	'-Wcast-align',
+	'-Winline',
+	'-Waddress-space',
+	'-Wbitwise',
+	'-Wcast-to-as',
+	'-Wno-pointer-sign',
+	'-Wdefault-bitfield-sign',
+	'-Wdo-while',
+	'-Wparen-string',
+	'-Wptr-subtraction-blows',
+	'-Wreturn-void',
+	'-Wtypesign',
+]
+
+# Fine tuning. Some warnings enabled above are a bit too much
+# (at least for now)
+test_c_args = [
+	'-Wno-unused-parameter',
+	'-Wno-sign-compare'
+]
+
+# Some warnings which we may want to consider later on but which
+# trigger too often at the time of writing
+not_now_please = [
+	'-Wpointer-arith',
+	'-Wbad-function-cast',
+	'-Wswitch-enum',
+	'-Wfloat-equal',
+	'-Wdeclaration-after-statement',
+	'-Wshadow'
+]
+
+foreach arg: test_c_args
+	if cc.has_multi_arguments(arg)
+		global_c_args += arg
+	endif
+endforeach
+
+add_project_arguments(
+	global_c_args,
+	language: 'c'
+)
 
 # build itex2mml
 subdir('itex2mml')
