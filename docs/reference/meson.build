@@ -23,7 +23,7 @@ dependency('gi-docgen', version: '>= 2021.1',
 
 gidocgen = find_program('gi-docgen')
 
-docs_dir = datadir / 'docs'
+docs_dir = datadir / 'doc'
 
 custom_target('lasem-doc',
 	input: [ lasem_toml, lasem_gir[0] ],

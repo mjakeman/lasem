@@ -296,7 +296,7 @@ liblasem_dep = declare_dependency(
 )
 
 # gobject introspection
-if get_option('introspection').enabled()
+if get_option('introspection').enabled() or get_option('docs').enabled()
 
 	lasem_gir_extra_args = [
 		'--c-include=lsm.h',
