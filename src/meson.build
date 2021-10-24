@@ -261,14 +261,14 @@ lasem_dom_types = gnome.mkenums_simple(
 lasem_mathml_types = gnome.mkenums_simple(
 	'lsmmathmlenumtypes',
 	sources : lasem_mathml_headers,
-	install_dir : join_paths(get_option('includedir'), lasem_header_install_dir, 'mathml'),
+	install_dir : join_paths(get_option('includedir'), lasem_header_install_dir),
 	install_header : true
 )
 
 lasem_svg_types = gnome.mkenums_simple(
 	'lsmsvgenumtypes',
 	sources : lasem_svg_headers,
-	install_dir : join_paths(get_option('includedir'), lasem_header_install_dir, 'svg'),
+	install_dir : join_paths(get_option('includedir'), lasem_header_install_dir),
 	install_header : true
 )
 
@@ -291,8 +291,8 @@ sources = [
 
 # install headers
 install_headers(lasem_dom_headers, subdir : lasem_header_install_dir)
-install_headers(lasem_mathml_headers, subdir : lasem_header_install_dir / 'mathml')
-install_headers(lasem_svg_headers, subdir : lasem_header_install_dir / 'svg')
+install_headers(lasem_mathml_headers, subdir : lasem_header_install_dir)
+install_headers(lasem_svg_headers, subdir : lasem_header_install_dir)
 
 # lasem shared library
 liblasem = shared_library(
