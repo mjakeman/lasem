@@ -15,9 +15,10 @@ struct _DemoWindow
 {
     GtkApplicationWindow parent_instance;
 
-    GtkWidget *lasem_view;
-    GtkWidget *text_view;
-    GtkWidget *status_label;
+    GtkDrawingArea *lasem_view;
+    GtkTextView *text_view;
+    GtkLabel *status_label;
+    GtkButton *render_btn;
 
     LsmDomDocument *document;
     GError *error;
@@ -48,14 +49,6 @@ demo_window_finalize (GObject *object)
     g_clear_pointer (&self->document, g_object_unref);
 
     G_OBJECT_CLASS (demo_window_parent_class)->finalize (object);
-}
-
-static void
-demo_window_class_init (DemoWindowClass *klass)
-{
-    GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-    object_class->finalize = demo_window_finalize;
 }
 
 static void
@@ -98,7 +91,7 @@ demo_window_render (DemoWindow *window)
         window->view = lsm_dom_document_create_view (window->document);
     }
 
-    gtk_widget_queue_draw (window->lasem_view);
+    gtk_widget_queue_draw (GTK_WIDGET (window->lasem_view));
 }
 
 static void
@@ -139,59 +132,48 @@ cb_motion (GtkEventControllerMotion *controller,
                                lsm_dom_node_get_node_name (LSM_DOM_NODE (pick)),
                                x, y);
 
-        gtk_label_set_label (GTK_LABEL (self->status_label), fmt);
+        gtk_label_set_label (self->status_label, fmt);
     }
+}
+
+static void
+demo_window_class_init (DemoWindowClass *klass)
+{
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+    object_class->finalize = demo_window_finalize;
+
+    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+    gtk_widget_class_set_template_from_resource (widget_class, "/com/mattjakeman/lsm-demo/demo.ui");
+
+    gtk_widget_class_bind_template_child (widget_class, DemoWindow, lasem_view);
+    gtk_widget_class_bind_template_child (widget_class, DemoWindow, text_view);
+    gtk_widget_class_bind_template_child (widget_class, DemoWindow, status_label);
+    gtk_widget_class_bind_template_child (widget_class, DemoWindow, render_btn);
 }
 
 static void
 demo_window_init (DemoWindow *self)
 {
-    gtk_window_set_title (GTK_WINDOW (self), "Lasem Demo");
-    gtk_window_set_default_size (GTK_WINDOW (self), 800, 600);
+    gtk_widget_init_template (GTK_WIDGET (self));
 
-    GtkWidget *header_bar = gtk_header_bar_new ();
-    gtk_window_set_titlebar (GTK_WINDOW (self), header_bar);
+    // Render Button
+    gtk_widget_add_css_class (GTK_WIDGET (self->render_btn), "suggested-action");
+    g_signal_connect_swapped (self->render_btn, "clicked", G_CALLBACK (demo_window_render), self);
 
-    GtkWidget *render_btn = gtk_button_new_with_label ("Render");
-    gtk_widget_add_css_class (render_btn, "suggested-action");
-    g_signal_connect_swapped (render_btn, "clicked", G_CALLBACK (demo_window_render), self);
-    gtk_header_bar_pack_end (GTK_HEADER_BAR (header_bar), render_btn);
+    // Set text view placeholder contents
+    gtk_text_buffer_set_text (gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->text_view)), mml, -1);
 
-    GtkWidget *hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_set_homogeneous (GTK_BOX (hbox), TRUE);
-    gtk_window_set_child (GTK_WINDOW (self), hbox);
-
-    GtkWidget *text_view = gtk_text_view_new ();
-    self->text_view = text_view;
-
-    // Set placeholder contents
-    gtk_text_buffer_set_text (gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view)), mml, -1);
-
-    GtkWidget *scroll_area = gtk_scrolled_window_new ();
-    gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (scroll_area), text_view);
-    gtk_box_append (GTK_BOX (hbox), scroll_area);
-
-    GtkWidget *lasem_view_vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-    gtk_box_append (GTK_BOX (hbox), lasem_view_vbox);
-
-    GtkWidget *lasem_view = gtk_drawing_area_new ();
-    gtk_widget_set_vexpand (lasem_view, TRUE);
-    gtk_box_append (GTK_BOX (lasem_view_vbox), lasem_view);
-    gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (lasem_view),
+    // Drawing area for Lasem Equation
+    gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (self->lasem_view),
                                     (GtkDrawingAreaDrawFunc) lasem_view_draw,
                                     self, NULL);
 
+    // Respond to mouse movement (for picking)
     GtkEventController *motion_controller = gtk_event_controller_motion_new ();
     g_signal_connect (motion_controller, "motion", G_CALLBACK (cb_motion), self);
-    gtk_widget_add_controller (GTK_WIDGET (lasem_view), motion_controller);
-
-    self->lasem_view = lasem_view;
-
-    GtkWidget *status_label = gtk_label_new (NULL);
-    gtk_label_set_wrap (GTK_LABEL (status_label), TRUE);
-    gtk_label_set_xalign (GTK_LABEL (status_label), 0);
-    gtk_box_append (GTK_BOX (lasem_view_vbox), status_label);
-    self->status_label = status_label;
+    gtk_widget_add_controller (GTK_WIDGET (self->lasem_view), motion_controller);
 
     demo_window_render (self);
 }
