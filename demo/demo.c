@@ -124,6 +124,9 @@ lasem_view_draw (GtkDrawingArea *drawing_area,
                          window->pick->y,
                          window->pick->bbox.width,
                          -window->pick->bbox.height);
+        cairo_fill (cr);
+
+        cairo_set_source_rgba (cr, 153/255.0, 193/255.0, 241/255.0, 0.2);
         cairo_rectangle (cr,
                          window->pick->x,
                          window->pick->y,
@@ -149,13 +152,20 @@ cb_motion (GtkEventControllerMotion *controller,
     if (self->pick != NULL)
     {
         const char *fmt;
-        fmt = g_strdup_printf ("Picked '%s' (<%s>) at:\nX: %.2lf\nY: %.2lf",
+        fmt = g_strdup_printf ("Picked '%s' (<%s>) at:\nX: %.2lf\nY: %.2lf\nElement X: %.2lf\nElement Y: %.2lf\nElement Width: %.2lf\nElement Height: %.2lf\nElement Depth: %.2lf\n",
                                g_type_name_from_instance ((GTypeInstance *)self->pick),
                                lsm_dom_node_get_node_name (LSM_DOM_NODE (self->pick)),
-                               x, y);
+                               x, y, // TODO: These are GTK positions, not equation coords
+                               self->pick->x,
+                               self->pick->y,
+                               self->pick->bbox.width,
+                               self->pick->bbox.height,
+                               self->pick->bbox.depth);
 
         gtk_label_set_label (self->status_label, fmt);
     }
+    else
+        gtk_label_set_label (self->status_label, NULL);
 
     GtkWidget *lasem_view = gtk_event_controller_get_widget (GTK_EVENT_CONTROLLER (controller));
     gtk_widget_queue_draw (lasem_view);
