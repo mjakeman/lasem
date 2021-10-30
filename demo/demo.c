@@ -25,6 +25,8 @@ struct _DemoWindow
 
     LsmDomView *view;
     double multiplier;
+
+    LsmMathmlElement *pick;
 };
 
 G_DEFINE_FINAL_TYPE (DemoWindow, demo_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -108,6 +110,27 @@ lasem_view_draw (GtkDrawingArea *drawing_area,
     lsm_dom_view_set_resolution (window->view, window->multiplier * LSM_DOM_VIEW_DEFAULT_RESOLUTION);
 
     lsm_dom_view_render (window->view, cr, 0, 0);
+
+    if (window->pick)
+    {
+        double baseline = 0;
+        lsm_dom_view_get_size (window->view, NULL, NULL, &baseline);
+
+        cairo_scale (cr, window->multiplier, window->multiplier);
+        cairo_translate (cr, 0, baseline);
+        cairo_set_source_rgba (cr, 246/255.0, 97/255.0, 81/255.0, 0.2);
+        cairo_rectangle (cr,
+                         window->pick->x,
+                         window->pick->y,
+                         window->pick->bbox.width,
+                         -window->pick->bbox.height);
+        cairo_rectangle (cr,
+                         window->pick->x,
+                         window->pick->y,
+                         window->pick->bbox.width,
+                         window->pick->bbox.depth);
+        cairo_fill (cr);
+    }
 }
 
 static void
@@ -119,21 +142,23 @@ cb_motion (GtkEventControllerMotion *controller,
     if (self->view == NULL)
         return;
 
-    LsmMathmlElement *pick
-        = lsm_mathml_view_pick (self->view,
-                                x / self->multiplier,
-                                y / self->multiplier);
+    self->pick = lsm_mathml_view_pick (self->view,
+                                       x / self->multiplier,
+                                       y / self->multiplier);
 
-    if (pick != NULL)
+    if (self->pick != NULL)
     {
         const char *fmt;
         fmt = g_strdup_printf ("Picked '%s' (<%s>) at:\nX: %.2lf\nY: %.2lf",
-                               g_type_name_from_instance ((GTypeInstance *)pick),
-                               lsm_dom_node_get_node_name (LSM_DOM_NODE (pick)),
+                               g_type_name_from_instance ((GTypeInstance *)self->pick),
+                               lsm_dom_node_get_node_name (LSM_DOM_NODE (self->pick)),
                                x, y);
 
         gtk_label_set_label (self->status_label, fmt);
     }
+
+    GtkWidget *lasem_view = gtk_event_controller_get_widget (GTK_EVENT_CONTROLLER (controller));
+    gtk_widget_queue_draw (lasem_view);
 }
 
 static void
