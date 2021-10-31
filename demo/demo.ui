@@ -29,6 +29,9 @@
             <property name="orientation">vertical</property>
             <child>
               <object class="GtkDrawingArea" id="lasem_view">
+                <property name="can-focus">true</property>
+                <property name="focusable">true</property>
+                <property name="focus-on-click">true</property>
                 <property name="vexpand">true</property>
               </object>
             </child>

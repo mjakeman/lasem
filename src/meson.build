@@ -21,7 +21,8 @@ lasem_dom_sources = [
 	'lsmdomtext.c',
 	'lsmdomview.c',
 	'lsmdomparser.c',
-	'lsmdomimplementation.c'
+	'lsmdomimplementation.c',
+    'lsmdomcursor.c'
 ]
 
 lasem_mathml_sources = [

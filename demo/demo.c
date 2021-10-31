@@ -4,6 +4,8 @@
 #include <lsmdom.h>
 #include <lsmmathml.h>
 
+#include <lsmdomcursor.h>
+
 #include <cairo.h>
 
 // Subclass GTK Window so we can store demo state
@@ -27,6 +29,7 @@ struct _DemoWindow
     double multiplier;
 
     LsmMathmlElement *pick;
+    LsmDomCursor *cursor;
 };
 
 G_DEFINE_FINAL_TYPE (DemoWindow, demo_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -91,9 +94,45 @@ demo_window_render (DemoWindow *window)
     else
     {
         window->view = lsm_dom_document_create_view (window->document);
+
+        LsmMathmlMathElement *root = lsm_mathml_document_get_root_element (LSM_MATHML_DOCUMENT (window->document));
+        g_object_set (window->cursor,
+                      "current", root,
+                      NULL);
     }
 
     gtk_widget_queue_draw (GTK_WIDGET (window->lasem_view));
+}
+
+static void
+draw_element_bbox (cairo_t          *cr,
+                   LsmMathmlElement *element,
+                   double            scale,
+                   double            baseline,
+                   gboolean          two_tone)
+{
+    cairo_save (cr);
+
+    cairo_scale (cr, scale, scale);
+    cairo_translate (cr, 0, baseline);
+    cairo_set_source_rgba (cr, 246/255.0, 97/255.0, 81/255.0, 0.2);
+    cairo_rectangle (cr,
+                     element->x,
+                     element->y,
+                     element->bbox.width,
+                     -element->bbox.height);
+    cairo_fill (cr);
+
+    if (two_tone)
+        cairo_set_source_rgba (cr, 153/255.0, 193/255.0, 241/255.0, 0.2);
+    cairo_rectangle (cr,
+                     element->x,
+                     element->y,
+                     element->bbox.width,
+                     element->bbox.depth);
+    cairo_fill (cr);
+
+    cairo_restore (cr);
 }
 
 static void
@@ -111,29 +150,39 @@ lasem_view_draw (GtkDrawingArea *drawing_area,
 
     lsm_dom_view_render (window->view, cr, 0, 0);
 
+    double baseline = 0;
+    lsm_dom_view_get_size (window->view, NULL, NULL, &baseline);
+
     if (window->pick)
-    {
-        double baseline = 0;
-        lsm_dom_view_get_size (window->view, NULL, NULL, &baseline);
+        draw_element_bbox (cr, window->pick, window->multiplier, baseline, TRUE);
 
-        cairo_scale (cr, window->multiplier, window->multiplier);
-        cairo_translate (cr, 0, baseline);
-        cairo_set_source_rgba (cr, 246/255.0, 97/255.0, 81/255.0, 0.2);
-        cairo_rectangle (cr,
-                         window->pick->x,
-                         window->pick->y,
-                         window->pick->bbox.width,
-                         -window->pick->bbox.height);
-        cairo_fill (cr);
+    LsmDomNode *cursor_el;
+    g_object_get (window->cursor, "current", &cursor_el, NULL);
 
-        cairo_set_source_rgba (cr, 153/255.0, 193/255.0, 241/255.0, 0.2);
-        cairo_rectangle (cr,
-                         window->pick->x,
-                         window->pick->y,
-                         window->pick->bbox.width,
-                         window->pick->bbox.depth);
-        cairo_fill (cr);
+    if (LSM_IS_MATHML_ELEMENT (cursor_el))
+        draw_element_bbox (cr, cursor_el, window->multiplier, baseline, FALSE);
+}
+
+gboolean
+cb_key_pressed (GtkEventControllerKey *controller,
+                guint                  keyval,
+                guint                  keycode,
+                GdkModifierType        state,
+                DemoWindow            *self)
+{
+    gboolean handled = FALSE;
+
+    if (keyval == GDK_KEY_Left) {
+        lsm_dom_cursor_move (self->cursor, LSM_DIRECTION_LEFT);
+        handled = TRUE;
     }
+    else if (keyval == GDK_KEY_Right) {
+        lsm_dom_cursor_move (self->cursor, LSM_DIRECTION_RIGHT);
+        handled = TRUE;
+    }
+
+    gtk_widget_queue_draw (GTK_WIDGET (self->lasem_view));
+    return handled;
 }
 
 static void
@@ -193,6 +242,8 @@ demo_window_init (DemoWindow *self)
 {
     gtk_widget_init_template (GTK_WIDGET (self));
 
+    self->cursor = lsm_dom_cursor_new ();
+
     // Render Button
     gtk_widget_add_css_class (GTK_WIDGET (self->render_btn), "suggested-action");
     g_signal_connect_swapped (self->render_btn, "clicked", G_CALLBACK (demo_window_render), self);
@@ -204,6 +255,11 @@ demo_window_init (DemoWindow *self)
     gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (self->lasem_view),
                                     (GtkDrawingAreaDrawFunc) lasem_view_draw,
                                     self, NULL);
+
+    // Respond to key input (for cursor)
+    GtkEventController *key_controller = gtk_event_controller_key_new ();
+    g_signal_connect (key_controller, "key-pressed", G_CALLBACK (cb_key_pressed), self);
+    gtk_widget_add_controller (GTK_WIDGET (self->lasem_view), key_controller);
 
     // Respond to mouse movement (for picking)
     GtkEventController *motion_controller = gtk_event_controller_motion_new ();
