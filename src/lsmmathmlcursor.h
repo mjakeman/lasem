@@ -24,24 +24,20 @@
 #pragma once
 
 #include <glib-object.h>
-#include <lsmdom.h>
+
+#include "lsmmathml.h"
 
 G_BEGIN_DECLS
 
-#define LSM_TYPE_DOM_CURSOR (lsm_dom_cursor_get_type())
+#define LSM_TYPE_MATHML_CURSOR (lsm_mathml_cursor_get_type())
 
-G_DECLARE_FINAL_TYPE (LsmDomCursor, lsm_dom_cursor, LSM, DOM_CURSOR, GObject)
+G_DECLARE_FINAL_TYPE (LsmMathmlCursor, lsm_mathml_cursor, LSM, MATHML_CURSOR, GObject)
 
-typedef enum
-{
-    LSM_DIRECTION_UP,
-    LSM_DIRECTION_DOWN,
-    LSM_DIRECTION_LEFT,
-    LSM_DIRECTION_RIGHT,
-} LsmDirection;
+LsmMathmlCursor *lsm_mathml_cursor_new (void);
 
-LsmDomCursor *lsm_dom_cursor_new (void);
+void lsm_mathml_cursor_move (LsmMathmlCursor *self, LsmDirection direction);
 
-void lsm_dom_cursor_move (LsmDomCursor *self, LsmDirection direction);
+GSList *
+lsm_mathml_cursor_get_insertion_points (LsmMathmlElement *element);
 
 G_END_DECLS

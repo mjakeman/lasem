@@ -4,7 +4,7 @@
 #include <lsmdom.h>
 #include <lsmmathml.h>
 
-#include <lsmdomcursor.h>
+#include <lsmmathmlcursor.h>
 
 #include <cairo.h>
 
@@ -29,7 +29,7 @@ struct _DemoWindow
     double multiplier;
 
     LsmMathmlElement *pick;
-    LsmDomCursor *cursor;
+    LsmMathmlCursor *cursor;
 };
 
 G_DEFINE_FINAL_TYPE (DemoWindow, demo_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -173,11 +173,16 @@ cb_key_pressed (GtkEventControllerKey *controller,
     gboolean handled = FALSE;
 
     if (keyval == GDK_KEY_Left) {
-        lsm_dom_cursor_move (self->cursor, LSM_DIRECTION_LEFT);
+        lsm_mathml_cursor_move (self->cursor, LSM_DIRECTION_LEFT);
         handled = TRUE;
     }
     else if (keyval == GDK_KEY_Right) {
-        lsm_dom_cursor_move (self->cursor, LSM_DIRECTION_RIGHT);
+        lsm_mathml_cursor_move (self->cursor, LSM_DIRECTION_RIGHT);
+        handled = TRUE;
+    }
+    else if (keyval == GDK_KEY_space) {
+        LsmMathmlMathElement *root = lsm_mathml_document_get_root_element (self->document);
+        lsm_mathml_cursor_get_insertion_points (root);
         handled = TRUE;
     }
 
@@ -242,7 +247,7 @@ demo_window_init (DemoWindow *self)
 {
     gtk_widget_init_template (GTK_WIDGET (self));
 
-    self->cursor = lsm_dom_cursor_new ();
+    self->cursor = lsm_mathml_cursor_new ();
 
     // Render Button
     gtk_widget_add_css_class (GTK_WIDGET (self->render_btn), "suggested-action");
