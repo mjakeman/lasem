@@ -24,6 +24,8 @@
 #include "lsmmathmlcursor.h"
 #include "lsmmathmlposition.h"
 
+#include <math.h>
+
 struct _LsmMathmlCursor
 {
     GObject parent_instance;
@@ -144,18 +146,18 @@ get_points_recursive (LsmMathmlElement *element, GSList **points)
 
 // TODO: Move to some kind of editor object?
 GSList *
-lsm_mathml_cursor_get_insertion_points (LsmMathmlElement *element)
+lsm_mathml_cursor_get_insertion_points (LsmMathmlElement *root)
 {
     GSList *points = NULL;
 
     // DFS traverse over element
     // get all insertion points
-    get_points_recursive (element, &points);
+    get_points_recursive (root, &points);
 
     // later:
     // loop over insertion points
     // find closest rectilinear distance
-    for (GSList *l = points; l != NULL; l = l->next)
+    /*for (GSList *l = points; l != NULL; l = l->next)
     {
         LsmMathmlPosition *pos = LSM_MATHML_POSITION (l->data);
 
@@ -165,9 +167,81 @@ lsm_mathml_cursor_get_insertion_points (LsmMathmlElement *element)
         g_print ("Insertion Point: %s %d\n",
                  lsm_dom_node_get_node_name (LSM_DOM_NODE (parent)),
                  position);
-    }
+    }*/
 
     return points;
+}
+
+LsmMathmlPosition *
+lsm_mathml_cursor_get_nearest_insertion_point (LsmMathmlElement *root, double x, double y)
+{
+    // TODO: The whole x/y doesn't start at zero is quite confusing for
+    // implementors. For now, we'll translate x/y to account for the baseline
+    // but a better solution is needed long term.
+
+    GSList *points = lsm_mathml_cursor_get_insertion_points (root);
+
+    double min_distance = G_MAXDOUBLE;
+    LsmMathmlPosition *min_point = NULL;
+
+    for (GSList *l = points; l != NULL; l = l->next)
+    {
+        LsmMathmlPosition *pos = LSM_MATHML_POSITION (l->data);
+
+        int position;
+        LsmMathmlElement *parent;
+        g_object_get (pos, "parent", &parent, "position", &position, NULL);
+
+        // TODO: Make elements define their own insertion points
+        // (otherwise defeats the purpose)
+
+        // TODO: We should find the shortest distance between two
+        // lines. That's a bit hard, so we'll find the midpoint distance
+        // for now.
+
+        double midpoint_x, midpoint_y;
+
+        if (position == 0)
+        {
+            midpoint_x = parent->x;
+        }
+        else
+        {
+            g_assert (position == 1);
+
+            midpoint_x = parent->x + parent->bbox.width;
+        }
+
+        midpoint_y = ((parent->y - parent->bbox.height) + (parent->y + parent->bbox.depth)) / 2;
+
+        double distance = sqrt(pow(x - midpoint_x, 2) + pow(y - midpoint_y, 2));
+
+        if (distance < min_distance)
+        {
+            min_distance = distance;
+            min_point = lsm_mathml_position_new (parent, position);
+        }
+    }
+
+    if (min_point == NULL)
+    {
+        g_critical ("No insertion point found!\n");
+        return NULL;
+    }
+
+    int position;
+    LsmMathmlElement *parent;
+    g_object_get (min_point, "parent", &parent, "position", &position, NULL);
+    g_print ("Nearest Insertion Point: %s %d (dist %lf)\n",
+             lsm_dom_node_get_node_name (LSM_DOM_NODE (parent)),
+             position,
+             min_distance);
+
+    g_object_ref (min_point);
+
+    g_slist_free_full (points, g_object_unref);
+
+    return min_point;
 }
 
 void

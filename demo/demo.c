@@ -30,6 +30,8 @@ struct _DemoWindow
 
     LsmMathmlElement *pick;
     LsmMathmlCursor *cursor;
+
+    LsmMathmlPosition *pos;
 };
 
 G_DEFINE_FINAL_TYPE (DemoWindow, demo_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -161,6 +163,36 @@ lasem_view_draw (GtkDrawingArea *drawing_area,
 
     if (LSM_IS_MATHML_ELEMENT (cursor_el))
         draw_element_bbox (cr, cursor_el, window->multiplier, baseline, FALSE);
+
+    if (LSM_IS_MATHML_POSITION (window->pos))
+    {
+        int position;
+        LsmMathmlElement *parent;
+        g_object_get (window->pos, "parent", &parent, "position", &position, NULL);
+
+        cairo_save (cr);
+
+        double x_pos;
+        double y_pos;
+
+        if (position == 0)
+            x_pos = parent->x;
+        else
+            x_pos = parent->x + parent->bbox.width;
+
+        y_pos = parent->y;
+
+        cairo_scale (cr, window->multiplier, window->multiplier);
+        cairo_translate (cr, 0, baseline);
+        cairo_set_source_rgb (cr, 1, 0, 0);
+        cairo_rectangle (cr, x_pos, y_pos, 1,
+                         -parent->bbox.height);
+        cairo_rectangle (cr, x_pos, y_pos, 1,
+                         parent->bbox.depth);
+        cairo_fill (cr);
+
+        cairo_restore (cr);
+    }
 }
 
 gboolean
@@ -223,6 +255,11 @@ cb_motion (GtkEventControllerMotion *controller,
 
     GtkWidget *lasem_view = gtk_event_controller_get_widget (GTK_EVENT_CONTROLLER (controller));
     gtk_widget_queue_draw (lasem_view);
+
+    LsmMathmlElement *root = lsm_mathml_document_get_root_element (self->document);
+    double baseline = 0;
+    lsm_dom_view_get_size (self->view, NULL, NULL, &baseline); // DON'T DO THIS HERE !!
+    self->pos = lsm_mathml_cursor_get_nearest_insertion_point (root, x / self->multiplier, (y / self->multiplier) - baseline);
 }
 
 static void

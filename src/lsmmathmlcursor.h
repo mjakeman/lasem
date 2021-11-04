@@ -26,6 +26,7 @@
 #include <glib-object.h>
 
 #include "lsmmathml.h"
+#include "lsmmathmlposition.h"
 
 G_BEGIN_DECLS
 
@@ -38,6 +39,8 @@ LsmMathmlCursor *lsm_mathml_cursor_new (void);
 void lsm_mathml_cursor_move (LsmMathmlCursor *self, LsmDirection direction);
 
 GSList *
-lsm_mathml_cursor_get_insertion_points (LsmMathmlElement *element);
+lsm_mathml_cursor_get_insertion_points (LsmMathmlElement *root);
+
+LsmMathmlPosition * lsm_mathml_cursor_get_nearest_insertion_point (LsmMathmlElement *root, double x, double y);
 
 G_END_DECLS
