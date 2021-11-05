@@ -185,9 +185,9 @@ lasem_view_draw (GtkDrawingArea *drawing_area,
         cairo_scale (cr, window->multiplier, window->multiplier);
         cairo_translate (cr, 0, baseline);
         cairo_set_source_rgb (cr, 1, 0, 0);
-        cairo_rectangle (cr, x_pos, y_pos, 1,
+        cairo_rectangle (cr, x_pos, y_pos, 0.5,
                          -parent->bbox.height);
-        cairo_rectangle (cr, x_pos, y_pos, 1,
+        cairo_rectangle (cr, x_pos, y_pos, 0.5,
                          parent->bbox.depth);
         cairo_fill (cr);
 
@@ -259,7 +259,11 @@ cb_motion (GtkEventControllerMotion *controller,
     LsmMathmlElement *root = lsm_mathml_document_get_root_element (self->document);
     double baseline = 0;
     lsm_dom_view_get_size (self->view, NULL, NULL, &baseline); // DON'T DO THIS HERE !!
-    self->pos = lsm_mathml_cursor_get_nearest_insertion_point (root, x / self->multiplier, (y / self->multiplier) - baseline);
+
+    if (self->pick != NULL)
+        self->pos = lsm_mathml_cursor_get_nearest_insertion_point (self->pick, x / self->multiplier, (y / self->multiplier) - baseline);
+    else
+        self->pos = lsm_mathml_cursor_get_nearest_insertion_point (root, x / self->multiplier, (y / self->multiplier) - baseline);
 }
 
 static void

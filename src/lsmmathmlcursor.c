@@ -122,7 +122,7 @@ get_points_recursive (LsmMathmlElement *element, GSList **points)
     LsmMathmlElement *next;
 
     // Add points (for now, two per element)
-    if (!LSM_IS_MATHML_ROW_ELEMENT (element)) // "Invisible"
+    if (!LSM_IS_MATHML_ROW_ELEMENT (element) && !LSM_IS_MATHML_MATH_ELEMENT (element)) // "Invisibles"
     {
         // TODO: Coalesce insertion points if they are within a parent row element
         // We want to collapse the right cursor, e.g. the cursor "belongs" to the element
@@ -172,6 +172,42 @@ lsm_mathml_cursor_get_insertion_points (LsmMathmlElement *root)
     return points;
 }
 
+static double
+min_distance_point_to_line (double px, double py, double lx, double ly1, double ly2)
+{
+    // ensure ly1 is always less than ly2
+    if (ly1 > ly2)
+    {
+        double temp = ly1;
+        ly1 = ly2;
+        ly2 = temp;
+    }
+
+    double distance;
+
+    // CASE 1: Point above Line
+    if (py < ly1)
+    {
+        distance = sqrt(pow(px - lx, 2) + pow(py - ly1, 2));
+    }
+
+    // CASE 2: Point adjacent to Line
+    else if (py > ly1 && py < ly2)
+    {
+        // Find perpendicular distance
+        distance = px - lx;
+    }
+
+    // CASE 3: Point below Line
+    else
+    {
+        distance = sqrt(pow(px - lx, 2) + pow(py - ly2, 2));
+    }
+
+    // Return absolute value
+    return fabs (distance);
+}
+
 LsmMathmlPosition *
 lsm_mathml_cursor_get_nearest_insertion_point (LsmMathmlElement *root, double x, double y)
 {
@@ -214,7 +250,8 @@ lsm_mathml_cursor_get_nearest_insertion_point (LsmMathmlElement *root, double x,
 
         midpoint_y = ((parent->y - parent->bbox.height) + (parent->y + parent->bbox.depth)) / 2;
 
-        double distance = sqrt(pow(x - midpoint_x, 2) + pow(y - midpoint_y, 2));
+        // double distance = sqrt(pow(x - midpoint_x, 2) + pow(y - midpoint_y, 2));
+        double distance = min_distance_point_to_line (x, y, midpoint_x, parent->y - parent->bbox.height, parent->y + parent->bbox.depth);
 
         if (distance < min_distance)
         {
