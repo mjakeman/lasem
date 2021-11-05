@@ -5,6 +5,7 @@
 #include <lsmmathml.h>
 
 #include <lsmmathmlcursor.h>
+#include <lsmmathmlselection.h>
 
 #include <cairo.h>
 
@@ -32,6 +33,8 @@ struct _DemoWindow
     LsmMathmlCursor *cursor;
 
     LsmMathmlPosition *pos;
+
+    LsmMathmlSelection *selection;
 };
 
 G_DEFINE_FINAL_TYPE (DemoWindow, demo_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -158,11 +161,10 @@ lasem_view_draw (GtkDrawingArea *drawing_area,
     if (window->pick)
         draw_element_bbox (cr, window->pick, window->multiplier, baseline, TRUE);
 
-    LsmDomNode *cursor_el;
-    g_object_get (window->cursor, "current", &cursor_el, NULL);
-
-    if (LSM_IS_MATHML_ELEMENT (cursor_el))
-        draw_element_bbox (cr, cursor_el, window->multiplier, baseline, FALSE);
+    LsmMathmlBbox selection_bbox;
+    LsmMathmlElement *common = lsm_mathml_selection_get_selection_bounds (window->selection, &selection_bbox);
+    if (common)
+        draw_element_bbox (cr, common, window->multiplier, baseline, FALSE);
 
     if (LSM_IS_MATHML_POSITION (window->pos))
     {
@@ -267,6 +269,48 @@ cb_motion (GtkEventControllerMotion *controller,
 }
 
 static void
+cb_drag_begin (GtkGestureDrag *gesture,
+               gdouble         x,
+               gdouble         y,
+               DemoWindow     *self)
+{
+    LsmMathmlElement *root = lsm_mathml_document_get_root_element (self->document);
+    double baseline = 0;
+    lsm_dom_view_get_size (self->view, NULL, NULL, &baseline); // DON'T DO THIS HERE !!
+
+    LsmMathmlPosition *start_pos;
+    if (self->pick != NULL)
+        start_pos = lsm_mathml_cursor_get_nearest_insertion_point (self->pick, x / self->multiplier, (y / self->multiplier) - baseline);
+    else
+        start_pos = lsm_mathml_cursor_get_nearest_insertion_point (root, x / self->multiplier, (y / self->multiplier) - baseline);
+
+    g_object_set (self->selection, "start-position", start_pos, "end-position", start_pos, NULL);
+
+    gtk_widget_queue_draw (GTK_WIDGET (self->lasem_view));
+}
+
+static void
+cb_drag_update_or_end (GtkGestureDrag *gesture,
+                       gdouble         x,
+                       gdouble         y,
+                       DemoWindow     *self)
+{
+    LsmMathmlElement *root = lsm_mathml_document_get_root_element (self->document);
+    double baseline = 0;
+    lsm_dom_view_get_size (self->view, NULL, NULL, &baseline); // DON'T DO THIS HERE !!
+
+    LsmMathmlPosition *cur_pos;
+    if (self->pick != NULL)
+        cur_pos = lsm_mathml_cursor_get_nearest_insertion_point (self->pick, x / self->multiplier, (y / self->multiplier) - baseline);
+    else
+        cur_pos = lsm_mathml_cursor_get_nearest_insertion_point (root, x / self->multiplier, (y / self->multiplier) - baseline);
+
+    g_object_set (self->selection, "end-position", cur_pos, NULL);
+
+    gtk_widget_queue_draw (GTK_WIDGET (self->lasem_view));
+}
+
+static void
 demo_window_class_init (DemoWindowClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -289,6 +333,7 @@ demo_window_init (DemoWindow *self)
     gtk_widget_init_template (GTK_WIDGET (self));
 
     self->cursor = lsm_mathml_cursor_new ();
+    self->selection = lsm_mathml_selection_new ();
 
     // Render Button
     gtk_widget_add_css_class (GTK_WIDGET (self->render_btn), "suggested-action");
@@ -311,6 +356,13 @@ demo_window_init (DemoWindow *self)
     GtkEventController *motion_controller = gtk_event_controller_motion_new ();
     g_signal_connect (motion_controller, "motion", G_CALLBACK (cb_motion), self);
     gtk_widget_add_controller (GTK_WIDGET (self->lasem_view), motion_controller);
+
+    // Respond to mouse click (for selections)
+    GtkGesture *drag_gesture = gtk_gesture_drag_new ();
+    g_signal_connect (drag_gesture, "drag-begin", G_CALLBACK (cb_drag_begin), self);
+    g_signal_connect (drag_gesture, "drag-update", G_CALLBACK (cb_drag_update_or_end), self);
+    g_signal_connect (drag_gesture, "drag-end", G_CALLBACK (cb_drag_update_or_end), self);
+    gtk_widget_add_controller (GTK_WIDGET (self->lasem_view), GTK_EVENT_CONTROLLER (drag_gesture));
 
     demo_window_render (self);
 }

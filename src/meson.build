@@ -62,7 +62,8 @@ lasem_mathml_sources = [
     'lsmmathmlutils.c',
     'lsmmathmllayoututils.c',
     'lsmmathmlposition.c',
-    'lsmmathmlcursor.c'
+    'lsmmathmlcursor.c',
+    'lsmmathmlselection.c'
 ]
 
 lasem_svg_sources = [
@@ -186,7 +187,10 @@ lasem_mathml_headers = [
     'lsmmathmlaligngroupelement.h',
     'lsmmathmlitexelement.h',
     'lsmmathmlutils.h',
-    'lsmmathmllayoututils.h'
+    'lsmmathmllayoututils.h',
+    'lsmmathmlposition.h',
+    'lsmmathmlcursor.h',
+    'lsmmathmlselection.h'
 ]
 
 lasem_svg_headers = [
