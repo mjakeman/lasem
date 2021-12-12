@@ -332,6 +332,8 @@ lsm_mathml_cursor_delete (LsmMathmlCursor *self, gboolean backspace)
     LsmDomNode *prev = lsm_dom_node_get_previous_sibling (parent);
     LsmDomNode *next = lsm_dom_node_get_next_sibling (parent);
 
+    LsmDomNode *root = lsm_dom_document_get_document_element (lsm_dom_node_get_owner_document (parent));
+
     if (backspace && index == 0)
     {
         if (prev) {}
@@ -339,10 +341,26 @@ lsm_mathml_cursor_delete (LsmMathmlCursor *self, gboolean backspace)
     }
     else if (backspace && index == 1)
     {
+        // TODO: Naive implementation
+        LsmDomNode *test_moved;
+        do
+        {
+            lsm_mathml_cursor_move (self, root, LSM_DIRECTION_LEFT);
+            g_object_get (self->position, "parent", &test_moved, NULL);
+        } while (test_moved == parent);
+
         lsm_dom_node_remove_child (lsm_dom_node_get_parent_node (parent), parent);
     }
     else if (!backspace && index == 0)
     {
+        // TODO: Naive implementation
+        LsmDomNode *test_moved;
+        do
+        {
+            lsm_mathml_cursor_move (self, root, LSM_DIRECTION_RIGHT);
+            g_object_get (self->position, "parent", &test_moved, NULL);
+        } while (test_moved == parent);
+
         lsm_dom_node_remove_child (lsm_dom_node_get_parent_node (parent), parent);
     }
     else if (!backspace && index == 1)
