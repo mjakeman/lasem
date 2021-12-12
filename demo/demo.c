@@ -315,6 +315,17 @@ cb_drag_update_or_end (GtkGestureDrag *gesture,
 }
 
 static void
+cb_pressed (GtkGestureClick *gesture,
+            gint n_press,
+            gdouble x,
+            gdouble y,
+            DemoWindow *self)
+{
+    GtkWidget *lasem_view = GTK_WIDGET (self->lasem_view);
+    gtk_widget_grab_focus (lasem_view);
+}
+
+static void
 demo_window_class_init (DemoWindowClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -361,7 +372,12 @@ demo_window_init (DemoWindow *self)
     g_signal_connect (motion_controller, "motion", G_CALLBACK (cb_motion), self);
     gtk_widget_add_controller (GTK_WIDGET (self->lasem_view), motion_controller);
 
-    // Respond to mouse click (for selections)
+    // Respond to mouse click (for focus)
+    GtkGesture *click_gesture = gtk_gesture_click_new ();
+    g_signal_connect (click_gesture, "pressed", G_CALLBACK (cb_pressed), self);
+    gtk_widget_add_controller (GTK_WIDGET (self->lasem_view), GTK_EVENT_CONTROLLER (click_gesture));
+
+    // Respond to mouse drag (for selections)
     GtkGesture *drag_gesture = gtk_gesture_drag_new ();
     g_signal_connect (drag_gesture, "drag-begin", G_CALLBACK (cb_drag_begin), self);
     g_signal_connect (drag_gesture, "drag-update", G_CALLBACK (cb_drag_update_or_end), self);
