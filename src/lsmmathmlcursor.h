@@ -41,6 +41,12 @@ void lsm_mathml_cursor_move (LsmMathmlCursor *self, LsmMathmlElement *root, LsmD
 GList *
 lsm_mathml_cursor_get_insertion_points (LsmMathmlElement *root);
 
+void
+lsm_mathml_cursor_insert (LsmMathmlCursor *self, LsmMathmlElement *insertion);
+
+void
+lsm_mathml_cursor_delete (LsmMathmlCursor *self, gboolean backspace);
+
 LsmMathmlPosition * lsm_mathml_cursor_get_nearest_insertion_point (LsmMathmlElement *root, double x, double y);
 
 G_END_DECLS

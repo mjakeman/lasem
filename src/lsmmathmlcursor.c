@@ -301,6 +301,57 @@ lsm_mathml_cursor_move (LsmMathmlCursor *self, LsmMathmlElement *root, LsmDirect
     g_object_notify_by_pspec (self, properties[PROP_CURRENT]);
 }
 
+void
+lsm_mathml_cursor_insert (LsmMathmlCursor *self, LsmMathmlElement *insertion)
+{
+    LsmMathmlPosition *pos = self->position;
+
+    int index;
+    LsmMathmlElement *parent;
+    g_object_get (pos, "parent", &parent, "position", &index, NULL);
+
+    // TODO: Make this reliable
+    LSM_DOM_NODE (insertion)->owner_document = lsm_dom_node_get_owner_document (parent);
+
+    // TODO: Insert at index -> Completely different API (command-based?)
+    // TODO: Might be null??
+    lsm_dom_node_insert_before (lsm_dom_node_get_parent_node (parent),
+                                insertion,
+                                index == 0 ? parent : lsm_dom_node_get_next_sibling (parent));
+}
+
+void
+lsm_mathml_cursor_delete (LsmMathmlCursor *self, gboolean backspace)
+{
+    LsmMathmlPosition *pos = self->position;
+
+    int index;
+    LsmMathmlElement *parent;
+    g_object_get (pos, "parent", &parent, "position", &index, NULL);
+
+    LsmDomNode *prev = lsm_dom_node_get_previous_sibling (parent);
+    LsmDomNode *next = lsm_dom_node_get_next_sibling (parent);
+
+    if (backspace && index == 0)
+    {
+        if (prev) {}
+            lsm_dom_node_remove_child (lsm_dom_node_get_parent_node (parent), prev);
+    }
+    else if (backspace && index == 1)
+    {
+        lsm_dom_node_remove_child (lsm_dom_node_get_parent_node (parent), parent);
+    }
+    else if (!backspace && index == 0)
+    {
+        lsm_dom_node_remove_child (lsm_dom_node_get_parent_node (parent), parent);
+    }
+    else if (!backspace && index == 1)
+    {
+        if (next)
+            lsm_dom_node_remove_child (lsm_dom_node_get_parent_node (parent), next);
+    }
+}
+
 static void
 lsm_mathml_cursor_class_init (LsmMathmlCursorClass *klass)
 {

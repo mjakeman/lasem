@@ -38,7 +38,8 @@ struct _DemoWindow
 G_DEFINE_FINAL_TYPE (DemoWindow, demo_window, GTK_TYPE_APPLICATION_WINDOW)
 
 /* see test.mml */
-static const char *mml = "<math xmlns=\"http://www.w3.org/1998/Math/MathML\">\r\n  <mrow>\r\n    <msub>\r\n      <mi>a</mi>\r\n      <mn>0</mn>\r\n    </msub>\r\n    <mo>+</mo>\r\n    <mfrac>\r\n      <mn>1</mn>\r\n      <mrow>\r\n        <msub>\r\n          <mi>a</mi>\r\n          <mn>1</mn>\r\n        </msub>\r\n        <mo>+</mo>\r\n        <mfrac>\r\n          <mn>1</mn>\r\n          <mrow>\r\n            <msub>\r\n              <mi>a</mi>\r\n              <mn>2</mn>\r\n            </msub>\r\n            <mo>+</mo>\r\n            <mfrac>\r\n              <mn>1</mn>\r\n\r\n              <mrow>\r\n                <msub>\r\n                  <mi>a</mi>\r\n                  <mn>3</mn>\r\n                </msub>\r\n                <mo>+</mo>\r\n                <mfrac>\r\n                  <mn>1</mn>\r\n                  <mrow>\r\n                    <msub>\r\n                      <mi>a</mi>\r\n                      <mn>4</mn>\r\n                    </msub>\r\n                  </mrow>\r\n                </mfrac>\r\n              </mrow>\r\n\r\n            </mfrac>\r\n          </mrow>\r\n        </mfrac>\r\n      </mrow>\r\n    </mfrac>\r\n  </mrow>\r\n</math>\r\n\0";
+// static const char *mml = "<math xmlns=\"http://www.w3.org/1998/Math/MathML\">\r\n  <mrow>\r\n    <msub>\r\n      <mi>a</mi>\r\n      <mn>0</mn>\r\n    </msub>\r\n    <mo>+</mo>\r\n    <mfrac>\r\n      <mn>1</mn>\r\n      <mrow>\r\n        <msub>\r\n          <mi>a</mi>\r\n          <mn>1</mn>\r\n        </msub>\r\n        <mo>+</mo>\r\n        <mfrac>\r\n          <mn>1</mn>\r\n          <mrow>\r\n            <msub>\r\n              <mi>a</mi>\r\n              <mn>2</mn>\r\n            </msub>\r\n            <mo>+</mo>\r\n            <mfrac>\r\n              <mn>1</mn>\r\n\r\n              <mrow>\r\n                <msub>\r\n                  <mi>a</mi>\r\n                  <mn>3</mn>\r\n                </msub>\r\n                <mo>+</mo>\r\n                <mfrac>\r\n                  <mn>1</mn>\r\n                  <mrow>\r\n                    <msub>\r\n                      <mi>a</mi>\r\n                      <mn>4</mn>\r\n                    </msub>\r\n                  </mrow>\r\n                </mfrac>\r\n              </mrow>\r\n\r\n            </mfrac>\r\n          </mrow>\r\n        </mfrac>\r\n      </mrow>\r\n    </mfrac>\r\n  </mrow>\r\n</math>\r\n\0";
+static const char *mml = "<math xmlns = \"http://www.w3.org/1998/Math/MathML\">\n<mrow>\n<msup> <mi>x</mi> <mn>2</mn> </msup> <mo>+</mo>\n<mn>4</mn>\n<mi>x</mi>\n<mfrac>\n<mn>2</mn>\n<mi>y</mi>\n</mfrac>\n<mo>+</mo>\n<mn>4</mn>\n\n<mo>=</mo>\n<mn>0</mn>\n</mrow>\n</math>\0";
 
 static GtkWidget *
 demo_window_new (GtkApplication *app)
@@ -221,6 +222,23 @@ cb_key_pressed (GtkEventControllerKey *controller,
         lsm_mathml_cursor_get_insertion_points (root);
         handled = TRUE;
     }
+    else if (keyval == GDK_KEY_a) {
+        g_print ("a");
+        LsmDomNode *ident = lsm_mathml_identifier_element_new ();
+        lsm_dom_node_append_child (ident, LSM_DOM_NODE (lsm_dom_text_new ("a")));
+        lsm_mathml_cursor_insert (self->cursor, LSM_MATHML_ELEMENT (ident));
+        gtk_widget_queue_draw (GTK_WIDGET (self->lasem_view));
+    }
+    else if (keyval == GDK_KEY_Delete) {
+        lsm_mathml_cursor_delete (self->cursor, FALSE);
+    }
+    else if (keyval == GDK_KEY_BackSpace) {
+        lsm_mathml_cursor_delete (self->cursor, TRUE);
+    }
+    /*else {
+        guint32 *unichar = gdk_keyval_to_unicode (keyval);
+        g_print ("%d\n", unichar);
+    }*/
 
     gtk_widget_queue_draw (GTK_WIDGET (self->lasem_view));
     return handled;
