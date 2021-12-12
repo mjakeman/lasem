@@ -1,27 +1,27 @@
 # TODO: Project Arguments
 
 lasem_dom_sources = [
-	'lsm.c',
-	'lsmdebug.c',
-	'lsmstr.c',
-	'lsmutils.c',
-	'lsmtraits.c',
-	'lsmproperties.c',
-	'lsmattributes.c',
-	'lsmcairo.c',
-	'lsmitex.c',
-	'lsmdomentities.c',
-	'lsmdomnode.c',
-	'lsmdomnodelist.c',
-	'lsmdomnamednodemap.c',
-	'lsmdomdocument.c',
-	'lsmdomdocumentfragment.c',
-	'lsmdomelement.c',
-	'lsmdomcharacterdata.c',
-	'lsmdomtext.c',
-	'lsmdomview.c',
-	'lsmdomparser.c',
-	'lsmdomimplementation.c'
+    'lsm.c',
+    'lsmdebug.c',
+    'lsmstr.c',
+    'lsmutils.c',
+    'lsmtraits.c',
+    'lsmproperties.c',
+    'lsmattributes.c',
+    'lsmcairo.c',
+    'lsmitex.c',
+    'lsmdomentities.c',
+    'lsmdomnode.c',
+    'lsmdomnodelist.c',
+    'lsmdomnamednodemap.c',
+    'lsmdomdocument.c',
+    'lsmdomdocumentfragment.c',
+    'lsmdomelement.c',
+    'lsmdomcharacterdata.c',
+    'lsmdomtext.c',
+    'lsmdomview.c',
+    'lsmdomparser.c',
+    'lsmdomimplementation.c'
 ]
 
 lasem_mathml_sources = [
@@ -60,7 +60,10 @@ lasem_mathml_sources = [
     'lsmmathmlaligngroupelement.c',
     'lsmmathmlitexelement.c',
     'lsmmathmlutils.c',
-    'lsmmathmllayoututils.c'
+    'lsmmathmllayoututils.c',
+    'lsmmathmlposition.c',
+    'lsmmathmlcursor.c',
+    'lsmmathmlselection.c'
 ]
 
 lasem_svg_sources = [
@@ -184,7 +187,10 @@ lasem_mathml_headers = [
     'lsmmathmlaligngroupelement.h',
     'lsmmathmlitexelement.h',
     'lsmmathmlutils.h',
-    'lsmmathmllayoututils.h'
+    'lsmmathmllayoututils.h',
+    'lsmmathmlposition.h',
+    'lsmmathmlcursor.h',
+    'lsmmathmlselection.h'
 ]
 
 lasem_svg_headers = [

@@ -398,6 +398,44 @@ lsm_mathml_element_get_bbox (const LsmMathmlElement *self)
 }
 
 static gboolean
+_get_next_position (const LsmMathmlElement *self,
+                    int                     index,
+                    LsmDirection            direction,
+                    int                    *new_index)
+{
+    int old_index = index;
+    *new_index = -1;
+
+    if (direction == LSM_DIRECTION_LEFT)
+    {
+        if (--index >= 0)
+        {
+            *new_index = --index;
+            g_print ("Move left for %s: Old index %d New index %d\n",
+                     lsm_dom_node_get_node_name (LSM_DOM_NODE (self)),
+                     old_index,
+                     *new_index);
+
+            return TRUE;
+        }
+    }
+    else if (direction == LSM_DIRECTION_RIGHT)
+    {
+        if (++index <= self->length)
+        {
+            *new_index = ++index;
+            g_print ("Move right for %s: Old index %d New index %d\n",
+                     lsm_dom_node_get_node_name (LSM_DOM_NODE (self)),
+                     old_index,
+                     *new_index);
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+static gboolean
 _is_inferred_row (const LsmMathmlElement *self)
 {
 	return TRUE;
@@ -484,6 +522,7 @@ lsm_mathml_element_class_init (LsmMathmlElementClass *m_element_class)
 	m_element_class->render = _render;
 	m_element_class->get_embellished_core = _get_embellished_core;
 	m_element_class->is_inferred_row = _is_inferred_row;
+    m_element_class->get_next_position = _get_next_position;
 	m_element_class->attribute_manager = lsm_attribute_manager_new (G_N_ELEMENTS (lsm_svg_attribute_infos),
 									lsm_svg_attribute_infos);
 }

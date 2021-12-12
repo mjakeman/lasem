@@ -50,6 +50,13 @@ struct _LsmBox {
 
 GType lsm_box_get_type (void);
 
+enum _LsmDirection {
+    LSM_DIRECTION_UP,
+    LSM_DIRECTION_DOWN,
+    LSM_DIRECTION_LEFT,
+    LSM_DIRECTION_RIGHT,
+};
+
 G_END_DECLS
 
 #endif

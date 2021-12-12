@@ -68,6 +68,10 @@ struct _LsmMathmlElement {
 
 	double x, y;
 	LsmMathmlBbox bbox;
+
+  /* Edit */
+
+  int length;
 };
 
 struct _LsmMathmlElementClass {
@@ -86,6 +90,11 @@ struct _LsmMathmlElementClass {
 	LsmMathmlOperatorElement *	(*get_embellished_core)	(const LsmMathmlElement *self);
 
 	gboolean			(*is_inferred_row)	(const LsmMathmlElement *self);
+
+  gboolean (*get_next_position) (LsmMathmlElement *element,
+                                 int               index,
+                                 LsmDirection      direction,
+                                 int              *new_index);
 };
 
 GType lsm_mathml_element_get_type (void);

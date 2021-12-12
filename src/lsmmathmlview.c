@@ -1285,6 +1285,81 @@ lsm_mathml_view_render (LsmDomView *dom_view)
 		   cairo_status_to_string (cairo_status (cairo)));
 }
 
+static LsmMathmlElement *
+do_pick (LsmMathmlElement *element, double pick_x, double pick_y)
+{
+    if (!LSM_IS_MATHML_ELEMENT (element))
+        return NULL;
+
+    for (LsmDomNode *child = lsm_dom_node_get_first_child (LSM_DOM_NODE (element));
+         child != NULL;
+         child = lsm_dom_node_get_next_sibling (child))
+    {
+        if (!LSM_IS_MATHML_ELEMENT (child))
+            continue;
+
+        LsmMathmlElement *picked = do_pick (LSM_MATHML_ELEMENT (child), pick_x, pick_y);
+
+        if (picked)
+            return LSM_MATHML_ELEMENT (picked);
+    }
+
+    // Find element bounding box
+    double bbox_x = element->x;
+    double bbox_y = element->y;
+
+    const LsmMathmlBbox *bbox = lsm_mathml_element_get_bbox (element);
+
+    // Check intersection
+    if (pick_x > bbox_x &&
+        pick_x < bbox_x + bbox->width &&
+        pick_y > bbox_y - bbox->height &&
+        pick_y < bbox_y + bbox->depth)
+        return element;
+
+    return NULL;
+}
+
+LsmMathmlElement *
+lsm_mathml_view_pick (LsmDomView *dom_view, double x, double y)
+{
+    /*dom_view->cairo = debug;
+	cairo_save (debug);*/
+
+    LsmMathmlView *view = LSM_MATHML_VIEW (dom_view);
+	LsmMathmlMathElement *math_element;
+    const LsmMathmlBbox *bbox;
+	double resolution_ppi;
+
+    math_element = lsm_mathml_document_get_root_element (LSM_MATHML_DOCUMENT (view->dom_view.document));
+	if (math_element == NULL)
+		return NULL;
+
+    bbox = _view_measure (view, NULL, NULL, NULL);
+
+    lsm_mathml_math_element_layout (math_element, view, bbox);
+
+	resolution_ppi = lsm_dom_view_get_resolution (dom_view);
+
+    // TODO: Apply appropriate scaling to x/y coords
+    LsmMathmlElement *element = do_pick (LSM_MATHML_ELEMENT (math_element), x, y - bbox->height);
+
+    /*if (element != NULL)
+    {
+        // Display Debug bounding-box
+        cairo_t *cairo = view->dom_view.cairo;
+        cairo_scale (cairo, resolution_ppi / 72.0, resolution_ppi / 72.0);
+	    cairo_translate (cairo, 0, bbox->height);
+        lsm_mathml_view_show_bbox (LSM_MATHML_VIEW (dom_view), element->x, element->y, &element->bbox);
+    }
+
+    cairo_restore (debug);
+	cairo_new_path (debug);
+	dom_view->cairo = NULL;*/
+
+    return element;
+}
+
 LsmMathmlView *
 lsm_mathml_view_new (LsmMathmlDocument *document)
 {

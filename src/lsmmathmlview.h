@@ -89,6 +89,10 @@ GType lsm_mathml_view_get_type (void);
 
 LsmMathmlView *		lsm_mathml_view_new 		(LsmMathmlDocument *document);
 
+LsmMathmlElement *  lsm_mathml_view_pick        (LsmDomView *dom_view,
+                                                 double      x,
+                                                 double      y);
+
 /* Internal API */
 
 double 		lsm_mathml_view_measure_axis_offset	(LsmMathmlView *view, double math_size);
