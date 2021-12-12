@@ -30,10 +30,7 @@ struct _LsmMathmlCursor
 {
     GObject parent_instance;
 
-    LsmMathmlElement *current;
-
-    // Currently 0=start, 1=end
-    int position;
+    LsmMathmlPosition *position;
 };
 
 G_DEFINE_FINAL_TYPE (LsmMathmlCursor, lsm_mathml_cursor, G_TYPE_OBJECT)
@@ -71,7 +68,7 @@ lsm_mathml_cursor_get_property (GObject    *object,
     switch (prop_id)
     {
     case PROP_CURRENT:
-        g_value_set_object (value, self->current);
+        g_value_set_object (value, self->position);
         break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -80,24 +77,23 @@ lsm_mathml_cursor_get_property (GObject    *object,
 
 static void
 lsm_mathml_cursor_set_property (GObject      *object,
-                             guint         prop_id,
-                             const GValue *value,
-                             GParamSpec   *pspec)
+                                guint         prop_id,
+                                const GValue *value,
+                                GParamSpec   *pspec)
 {
     LsmMathmlCursor *self = LSM_MATHML_CURSOR (object);
 
     switch (prop_id)
     {
     case PROP_CURRENT:
-        self->current = g_value_get_object (value);
-        self->position = 0;
+        self->position = g_value_get_object (value);
         break;
     default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     }
 }
 
-static LsmMathmlPosition *
+/*static LsmMathmlPosition *
 do_move_recursive (LsmMathmlCursor *self, LsmDirection direction)
 {
     int new_index = -1;
@@ -114,21 +110,19 @@ do_move_recursive (LsmMathmlCursor *self, LsmDirection direction)
 
     // TODO: Once an element accepts the movement, go to its "first" position
     return lsm_mathml_position_new (LSM_MATHML_ELEMENT (element), new_index);
-}
+}*/
 
 static void
-get_points_recursive (LsmMathmlElement *element, GSList **points)
+get_points_recursive (LsmMathmlElement *element, GList **points)
 {
     LsmMathmlElement *next;
 
     // Add points (for now, two per element)
-    if (!LSM_IS_MATHML_ROW_ELEMENT (element) && !LSM_IS_MATHML_MATH_ELEMENT (element)) // "Invisibles"
+    if (!LSM_IS_MATHML_ROW_ELEMENT (element) &&
+        !LSM_IS_MATHML_MATH_ELEMENT (element) && // Layout Elements
+        !LSM_IS_MATHML_SCRIPT_ELEMENT (element)) // Scripts do not use first caret location
     {
-        // TODO: Coalesce insertion points if they are within a parent row element
-        // We want to collapse the right cursor, e.g. the cursor "belongs" to the element
-        // immediately to the right of it - the '0' position cursor always wins.
-        *points = g_slist_append (*points, lsm_mathml_position_new (element, 0));
-        *points = g_slist_append (*points, lsm_mathml_position_new (element, 1));
+        *points = g_list_append (*points, lsm_mathml_position_new (element, 0));
     }
 
     // Go to children elements first
@@ -136,6 +130,22 @@ get_points_recursive (LsmMathmlElement *element, GSList **points)
 
     if (next && LSM_IS_MATHML_ELEMENT (next))
         get_points_recursive (next, points);
+
+    // Add end point using same criteria as above
+    if (!LSM_IS_MATHML_ROW_ELEMENT (element) && !LSM_IS_MATHML_MATH_ELEMENT (element)) // "Invisibles"
+    {
+        // Coalesce insertion points if they are within a parent row element
+        // We want to collapse the left cursor, e.g. the cursor "belongs" to the element
+        // immediately to the left of it - the '0' position cursor of the right-hand element
+        // always wins.
+        LsmDomNode *test_sibling = lsm_dom_node_get_next_sibling (element);
+        LsmDomNode *test_parent = lsm_dom_node_get_parent_node (element);
+
+        if (!(test_sibling != NULL && LSM_IS_MATHML_ROW_ELEMENT (test_parent)))
+        {
+            *points = g_list_append (*points, lsm_mathml_position_new (element, 1));
+        }
+    }
 
     // Then move to sibling elements
     next = lsm_dom_node_get_next_sibling (element);
@@ -145,10 +155,10 @@ get_points_recursive (LsmMathmlElement *element, GSList **points)
 }
 
 // TODO: Move to some kind of editor object?
-GSList *
+GList *
 lsm_mathml_cursor_get_insertion_points (LsmMathmlElement *root)
 {
-    GSList *points = NULL;
+    GList *points = NULL;
 
     // DFS traverse over element
     // get all insertion points
@@ -157,7 +167,7 @@ lsm_mathml_cursor_get_insertion_points (LsmMathmlElement *root)
     // later:
     // loop over insertion points
     // find closest rectilinear distance
-    /*for (GSList *l = points; l != NULL; l = l->next)
+    /*for (GList *l = points; l != NULL; l = l->next)
     {
         LsmMathmlPosition *pos = LSM_MATHML_POSITION (l->data);
 
@@ -215,12 +225,12 @@ lsm_mathml_cursor_get_nearest_insertion_point (LsmMathmlElement *root, double x,
     // implementors. For now, we'll translate x/y to account for the baseline
     // but a better solution is needed long term.
 
-    GSList *points = lsm_mathml_cursor_get_insertion_points (root);
+    GList *points = lsm_mathml_cursor_get_insertion_points (root);
 
     double min_distance = G_MAXDOUBLE;
     LsmMathmlPosition *min_point = NULL;
 
-    for (GSList *l = points; l != NULL; l = l->next)
+    for (GList *l = points; l != NULL; l = l->next)
     {
         LsmMathmlPosition *pos = LSM_MATHML_POSITION (l->data);
 
@@ -276,15 +286,63 @@ lsm_mathml_cursor_get_nearest_insertion_point (LsmMathmlElement *root, double x,
 
     g_object_ref (min_point);
 
-    g_slist_free_full (points, g_object_unref);
+    g_list_free_full (points, g_object_unref);
 
     return min_point;
 }
 
-void
-lsm_mathml_cursor_move (LsmMathmlCursor *self, LsmDirection direction)
+static int
+position_cmp (gconstpointer a, gconstpointer b)
 {
-    LsmMathmlElement *move_to = NULL;
+    // TODO: These being GObjects might be too expensive
+    // Let's make them GBoxed instead...?
+    LsmMathmlPosition *pos_a = LSM_MATHML_POSITION (a);
+    LsmMathmlPosition *pos_b = LSM_MATHML_POSITION (b);
+
+    int position_a, position_b;
+    LsmMathmlElement *parent_a, *parent_b;
+    g_object_get (pos_a, "parent", &parent_a, "position", &position_a, NULL);
+    g_object_get (pos_b, "parent", &parent_b, "position", &position_b, NULL);
+
+    if (position_a == position_b &&
+        parent_a == parent_b)
+        return 0;
+
+    return 1;
+}
+
+void
+lsm_mathml_cursor_move (LsmMathmlCursor *self, LsmMathmlElement *root, LsmDirection direction)
+{
+    GList *points = lsm_mathml_cursor_get_insertion_points (root);
+    LsmMathmlPosition *current = self->position;
+
+    if (current == NULL) {
+        current = LSM_MATHML_POSITION (points->data);
+        g_object_notify_by_pspec (self, properties[PROP_CURRENT]);
+        return;
+    }
+
+    g_assert (current != NULL);
+
+    GList *current_list = g_list_find_custom (points, current, position_cmp);
+
+    g_assert (current_list != NULL);
+
+    if (direction == LSM_DIRECTION_LEFT &&
+        current_list->prev != NULL)
+    {
+        self->position = LSM_MATHML_POSITION (current_list->prev->data);
+    }
+    else if (direction == LSM_DIRECTION_RIGHT &&
+         current_list->next != NULL)
+    {
+        self->position = LSM_MATHML_POSITION (current_list->next->data);
+    }
+
+    g_object_notify_by_pspec (self, properties[PROP_CURRENT]);
+
+    /*LsmMathmlElement *move_to = NULL;
     int new_pos = self->position;
 
     if (!self->current)
@@ -298,7 +356,7 @@ lsm_mathml_cursor_move (LsmMathmlCursor *self, LsmDirection direction)
         g_object_get (test, "position", &position, "parent", &parent, NULL);
         g_print ("Result of Move: Element '%s' at index '%d'",
                  lsm_dom_node_get_node_name (parent), position);
-    }*/
+    }
 
     if (direction == LSM_DIRECTION_LEFT)
     {
@@ -364,7 +422,7 @@ move:
     // TODO: Emit notify?
     self->current = move_to;
     self->position = new_pos;
-    g_print ("Moved to: %s (%d)\n", lsm_dom_node_get_node_name (self->current), self->position);
+    g_print ("Moved to: %s (%d)\n", lsm_dom_node_get_node_name (self->current), self->position);*/
 }
 
 static void
@@ -379,8 +437,8 @@ lsm_mathml_cursor_class_init (LsmMathmlCursorClass *klass)
     properties [PROP_CURRENT]
         = g_param_spec_object ("current",
                                "Current",
-                               "Currently selected element",
-                               LSM_TYPE_MATHML_ELEMENT,
+                               "Current cursor position",
+                               LSM_TYPE_MATHML_POSITION,
                                G_PARAM_READWRITE);
 
     g_object_class_install_properties (object_class, N_PROPS, properties);

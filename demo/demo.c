@@ -32,8 +32,6 @@ struct _DemoWindow
     LsmMathmlElement *pick;
     LsmMathmlCursor *cursor;
 
-    LsmMathmlPosition *pos;
-
     LsmMathmlSelection *selection;
 };
 
@@ -102,7 +100,7 @@ demo_window_render (DemoWindow *window)
 
         LsmMathmlMathElement *root = lsm_mathml_document_get_root_element (LSM_MATHML_DOCUMENT (window->document));
         g_object_set (window->cursor,
-                      "current", root,
+                      "current", NULL,
                       NULL);
     }
 
@@ -158,19 +156,22 @@ lasem_view_draw (GtkDrawingArea *drawing_area,
     double baseline = 0;
     lsm_dom_view_get_size (window->view, NULL, NULL, &baseline);
 
-    if (window->pick)
-        draw_element_bbox (cr, window->pick, window->multiplier, baseline, TRUE);
+    /*if (window->pick)
+        draw_element_bbox (cr, window->pick, window->multiplier, baseline, TRUE);*/
 
-    LsmMathmlBbox selection_bbox;
+    /*LsmMathmlBbox selection_bbox;
     LsmMathmlElement *common = lsm_mathml_selection_get_selection_bounds (window->selection, &selection_bbox);
     if (common)
-        draw_element_bbox (cr, common, window->multiplier, baseline, FALSE);
+        draw_element_bbox (cr, common, window->multiplier, baseline, FALSE);*/
 
-    if (LSM_IS_MATHML_POSITION (window->pos))
+    LsmMathmlPosition *pos;
+    g_object_get (window->cursor, "current", &pos, NULL);
+
+    if (LSM_IS_MATHML_POSITION (pos))
     {
         int position;
         LsmMathmlElement *parent;
-        g_object_get (window->pos, "parent", &parent, "position", &position, NULL);
+        g_object_get (pos, "parent", &parent, "position", &position, NULL);
 
         cairo_save (cr);
 
@@ -206,16 +207,17 @@ cb_key_pressed (GtkEventControllerKey *controller,
 {
     gboolean handled = FALSE;
 
+    LsmMathmlMathElement *root = lsm_mathml_document_get_root_element (self->document);
+
     if (keyval == GDK_KEY_Left) {
-        lsm_mathml_cursor_move (self->cursor, LSM_DIRECTION_LEFT);
+        lsm_mathml_cursor_move (self->cursor, root, LSM_DIRECTION_LEFT);
         handled = TRUE;
     }
     else if (keyval == GDK_KEY_Right) {
-        lsm_mathml_cursor_move (self->cursor, LSM_DIRECTION_RIGHT);
+        lsm_mathml_cursor_move (self->cursor, root, LSM_DIRECTION_RIGHT);
         handled = TRUE;
     }
     else if (keyval == GDK_KEY_space) {
-        LsmMathmlMathElement *root = lsm_mathml_document_get_root_element (self->document);
         lsm_mathml_cursor_get_insertion_points (root);
         handled = TRUE;
     }
@@ -262,10 +264,12 @@ cb_motion (GtkEventControllerMotion *controller,
     double baseline = 0;
     lsm_dom_view_get_size (self->view, NULL, NULL, &baseline); // DON'T DO THIS HERE !!
 
+    LsmMathmlPosition *pos;
     if (self->pick != NULL)
-        self->pos = lsm_mathml_cursor_get_nearest_insertion_point (self->pick, x / self->multiplier, (y / self->multiplier) - baseline);
+        pos = lsm_mathml_cursor_get_nearest_insertion_point (self->pick, x / self->multiplier, (y / self->multiplier) - baseline);
     else
-        self->pos = lsm_mathml_cursor_get_nearest_insertion_point (root, x / self->multiplier, (y / self->multiplier) - baseline);
+        pos = lsm_mathml_cursor_get_nearest_insertion_point (root, x / self->multiplier, (y / self->multiplier) - baseline);
+    g_object_set (self->cursor, "current", pos, NULL);
 }
 
 static void

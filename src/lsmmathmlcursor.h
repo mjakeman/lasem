@@ -36,9 +36,9 @@ G_DECLARE_FINAL_TYPE (LsmMathmlCursor, lsm_mathml_cursor, LSM, MATHML_CURSOR, GO
 
 LsmMathmlCursor *lsm_mathml_cursor_new (void);
 
-void lsm_mathml_cursor_move (LsmMathmlCursor *self, LsmDirection direction);
+void lsm_mathml_cursor_move (LsmMathmlCursor *self, LsmMathmlElement *root, LsmDirection direction);
 
-GSList *
+GList *
 lsm_mathml_cursor_get_insertion_points (LsmMathmlElement *root);
 
 LsmMathmlPosition * lsm_mathml_cursor_get_nearest_insertion_point (LsmMathmlElement *root, double x, double y);
