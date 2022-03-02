@@ -1,0 +1,490 @@
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lasem.MathmlStyle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8" />
+
+  
+  <meta property="og:type" content="website"/>
+
+  
+
+  
+  <meta property="og:title" content="Lasem.MathmlStyle"/>
+  <meta property="og:description" content="Reference for Lasem.MathmlStyle"/>
+  <meta name="twitter:title" content="Lasem.MathmlStyle"/>
+  <meta name="twitter:description" content="Reference for Lasem.MathmlStyle"/>
+
+
+  
+  <meta name="twitter:card" content="summary"/>
+
+  
+  
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css" />
+
+  
+
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    <nav class="sidebar devhelp-hidden">
+      
+      
+      <div class="search section">
+        <form id="search-form" autocomplete="off">
+          <input id="search-input" type="text" name="do-not-autocomplete" placeholder="Click, or press 's' to search" autocomplete="off"/>
+        </form>
+      </div>
+      
+      <div class="section namespace">
+        <h3><a href="index.html">Lasem</a></h3>
+        <p>API Version: 0.7</p>
+        
+        <p>Library Version: 0.7.0</p>
+        
+      </div>
+      
+<div class="section">
+  <h5>Type</h5>
+  <div class="links">
+    <a class="current" href="struct.MathmlStyle.html#description">MathmlStyle</a>
+  </div>
+</div>
+
+
+<div class="section">
+  <h5>Constructors</h5>
+  <div class="links">
+  
+    <a class="ctor" href="ctor.MathmlStyle.new.html">new</a>
+  
+  </div>
+</div>
+
+
+
+
+
+<div class="section">
+  <h5>Instance methods</h5>
+  <div class="links">
+  
+    <a class="method" href="method.MathmlStyle.change_script_level.html">change_script_level</a>
+  
+    <a class="method" href="method.MathmlStyle.duplicate.html">duplicate</a>
+  
+    <a class="method" href="method.MathmlStyle.free.html">free</a>
+  
+    <a class="method" href="method.MathmlStyle.set_math_color.html">set_math_color</a>
+  
+    <a class="method" href="method.MathmlStyle.set_math_family.html">set_math_family</a>
+  
+    <a class="method" href="method.MathmlStyle.set_math_size_pt.html">set_math_size_pt</a>
+  
+    <a class="method" href="method.MathmlStyle.set_math_variant.html">set_math_variant</a>
+  
+    <a class="method" href="method.MathmlStyle.set_script_min_size_pt.html">set_script_min_size_pt</a>
+  
+  </div>
+</div>
+
+
+
+    </nav>
+    
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index.html">Lasem</a><span class="sep"></span>MathmlStyle</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">LsmMathmlStyle</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmMathmlDisplay</span><span class="w"> </span><span class="n">display</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">script_level</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">script_size_multiplier</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">script_min_size</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">negative_very_very_thin_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">negative_very_thin_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">negative_thin_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">negative_medium_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">negative_thick_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">negative_very_thick_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">negative_very_very_thick_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">very_very_thin_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">very_thin_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">thin_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">medium_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">thick_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">very_thick_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">very_very_thick_math_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">math_family</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmMathmlVariant</span><span class="w"> </span><span class="n">math_variant</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">math_size</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmMathmlColor</span><span class="w"> </span><span class="n">math_color</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmMathmlColor</span><span class="w"> </span><span class="n">math_background</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">gboolean</span><span class="w"> </span><span class="n">bevelled</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">subscript_shift</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">superscript_shift</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">line_thickness</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          No description available.
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <table>
+            
+              <tr>
+                <td><code>display</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>script_level</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>script_size_multiplier</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>script_min_size</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>negative_very_very_thin_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>negative_very_thin_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>negative_thin_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>negative_medium_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>negative_thick_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>negative_very_thick_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>negative_very_very_thick_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>very_very_thin_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>very_thin_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>thin_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>medium_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>thick_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>very_thick_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>very_very_thick_math_space</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>math_family</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>math_variant</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>math_size</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>math_color</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>math_background</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>bevelled</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>subscript_shift</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>superscript_shift</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>line_thickness</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+            </table>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          <table class="attributes">
+            
+            
+            
+          </table>
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+    <div class="toggle-wrapper constructors">
+      <h4 id="constructors">
+        Constructors
+        <a href="#constructors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.MathmlStyle.new.html">lsm_mathml_style_new</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.MathmlStyle.change_script_level.html">lsm_mathml_style_change_script_level</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MathmlStyle.duplicate.html">lsm_mathml_style_duplicate</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MathmlStyle.free.html">lsm_mathml_style_free</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MathmlStyle.set_math_color.html">lsm_mathml_style_set_math_color</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MathmlStyle.set_math_family.html">lsm_mathml_style_set_math_family</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MathmlStyle.set_math_size_pt.html">lsm_mathml_style_set_math_size_pt</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MathmlStyle.set_math_variant.html">lsm_mathml_style_set_math_variant</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.MathmlStyle.set_script_min_size_pt.html">lsm_mathml_style_set_script_min_size_pt</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+<li class="toc-list-item"><a href="#constructors"><span class="link-text">Constructors</span></a></li>
+
+
+      
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+</body>
+</html>

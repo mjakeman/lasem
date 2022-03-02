@@ -1,0 +1,590 @@
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lasem.SvgElement</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8" />
+
+  
+  <meta property="og:type" content="website"/>
+
+  
+
+  
+  <meta property="og:title" content="Lasem.SvgElement"/>
+  <meta property="og:description" content="Reference for Lasem.SvgElement"/>
+  <meta name="twitter:title" content="Lasem.SvgElement"/>
+  <meta name="twitter:description" content="Reference for Lasem.SvgElement"/>
+
+
+  
+  <meta name="twitter:card" content="summary"/>
+
+  
+  
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css" />
+
+  
+
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    <nav class="sidebar devhelp-hidden">
+      
+      
+      <div class="search section">
+        <form id="search-form" autocomplete="off">
+          <input id="search-input" type="text" name="do-not-autocomplete" placeholder="Click, or press 's' to search" autocomplete="off"/>
+        </form>
+      </div>
+      
+      <div class="section namespace">
+        <h3><a href="index.html">Lasem</a></h3>
+        <p>API Version: 0.7</p>
+        
+        <p>Library Version: 0.7.0</p>
+        
+      </div>
+      
+<div class="section">
+  <h5>Type</h5>
+  <div class="links">
+    <a class="current" href="class.SvgElement.html#description">SvgElement</a>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="section">
+  <h5>Instance methods</h5>
+  <div class="links">
+  
+    <a class="method" href="method.SvgElement.force_render.html">force_render</a>
+  
+    <a class="method" href="method.SvgElement.get_category.html">get_category</a>
+  
+    <a class="method" href="method.SvgElement.get_extents.html">get_extents</a>
+  
+    <a class="method" href="method.SvgElement.render.html">render</a>
+  
+    <a class="method" href="method.SvgElement.transformed_get_extents.html">transformed_get_extents</a>
+  
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="section">
+  <h5>Virtual methods</h5>
+  <div class="links">
+  
+    <a class="method" href="vfunc.SvgElement.enable_rendering.html">enable_rendering</a>
+  
+    <a class="method" href="vfunc.SvgElement.get_extents.html">get_extents</a>
+  
+    <a class="method" href="vfunc.SvgElement.render.html">render</a>
+  
+    <a class="method" href="vfunc.SvgElement.transformed_get_extents.html">transformed_get_extents</a>
+  
+    <a class="method" href="vfunc.SvgElement.transformed_render.html">transformed_render</a>
+  
+  </div>
+</div>
+
+
+
+    </nav>
+    
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Class</h3>
+    <h1 aria-label="Name"><a href="index.html">Lasem</a><span class="sep" role="presentation"></span>SvgElement</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="toggle-wrapper">
+        <h4 id="description" style="display:flex;">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+        </h4>
+
+        <pre><code>abstract class Lasem.SvgElement : GObject.Object {
+  element: LsmDomElement,
+  property_bag: LsmPropertyBag,
+  id: LsmAttribute,
+  class_name: LsmAttribute
+}</pre></code>
+
+        <div class="docblock">
+          No description available.
+        </div>
+
+        <div class="docblock">
+          <table class="attributes">
+            
+            
+            
+          </table>
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper ancestors">
+      <h4 id="ancestors">
+        Ancestors
+        <a href="#ancestors" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <ul>
+        
+          
+          <li class="class"><a class="external" href="javascript:void(0)" data-link="class.Object.html" data-namespace="GObject">GObject</a></li>
+          
+        
+        </ul>
+      </div>
+    </div>
+    
+
+    
+    <div class="descendants toggle-wrapper default-hide">
+      <h4 id="descendants">Descendants <a href="#descendants" class="anchor"></a></h4>
+      <div class="docblock">
+        <ul>
+          <li class="class"><a href="class.SvgFilterElement.html" title="SvgFilterElement">LsmSvgFilterElement</a></li>
+        
+          <li class="class"><a href="class.SvgFilterPrimitive.html" title="SvgFilterPrimitive">LsmSvgFilterPrimitive</a></li>
+        
+          <li class="class"><a href="class.SvgGradientElement.html" title="SvgGradientElement">LsmSvgGradientElement</a></li>
+        
+          <li class="class"><a href="class.SvgMarkerElement.html" title="SvgMarkerElement">LsmSvgMarkerElement</a></li>
+        
+          <li class="class"><a href="class.SvgMaskElement.html" title="SvgMaskElement">LsmSvgMaskElement</a></li>
+        
+          <li class="class"><a href="class.SvgPatternElement.html" title="SvgPatternElement">LsmSvgPatternElement</a></li>
+        
+          <li class="class"><a href="class.SvgStopElement.html" title="SvgStopElement">LsmSvgStopElement</a></li>
+        
+          <li class="class"><a href="class.SvgSvgElement.html" title="SvgSvgElement">LsmSvgSvgElement</a></li>
+        
+          <li class="class"><a href="class.SvgSymbolElement.html" title="SvgSymbolElement">LsmSvgSymbolElement</a></li>
+        
+          <li class="class"><a href="class.SvgTransformable.html" title="SvgTransformable">LsmSvgTransformable</a></li>
+        
+          <li class="class"><a href="class.SvgTspanElement.html" title="SvgTspanElement">LsmSvgTspanElement</a></li>
+        </ul>
+      </div>
+    </div>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.SvgElement.force_render.html">lsm_svg_element_force_render</a></h6>
+          <div class="docblock">
+            No description available.
+          </div>
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.SvgElement.get_category.html">lsm_svg_element_get_category</a></h6>
+          <div class="docblock">
+            No description available.
+          </div>
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.SvgElement.get_extents.html">lsm_svg_element_get_extents</a></h6>
+          <div class="docblock">
+            No description available.
+          </div>
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.SvgElement.render.html">lsm_svg_element_render</a></h6>
+          <div class="docblock">
+            No description available.
+          </div>
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.SvgElement.transformed_get_extents.html">lsm_svg_element_transformed_get_extents</a></h6>
+          <div class="docblock">
+            No description available.
+          </div>
+          
+        </div>
+      
+      </div>
+
+      
+        
+        <div class="toggle-wrapper default-hide ancestor-methods"><h5 style="display:block;">Methods inherited from <a class="external" href="javascript:void(0)" data-link="class.Object.html" data-namespace="GObject">GObject</a> (42)</h5>
+          <div class="docblock">
+          
+            <div class="docblock">
+              <p>Please see&nbsp;<a class="external" href="javascript:void(0)" data-link="class.Object.html#methods" data-namespace="GObject">GObject</a>&nbsp;for a full list of methods.</em></p>
+            </div>
+          
+          </div>
+        </div>
+        
+      
+
+      
+    </div>
+    
+
+    
+
+    
+    <div class="signals toggle-wrapper">
+      <h4 id="signals">
+        Signals
+        <a href="#signals" class="anchor"></a>
+      </h4>
+
+      
+
+      
+        
+        <div class="toggle-wrapper default-hide ancestor-signals"><h5 style="display:block;">Signals inherited from <a class="external" href="javascript:void(0)" data-link="class.Object.html" data-namespace="GObject">GObject</a> (1)</h5>
+          <div class="docblock">
+          <h6><a class="external" href="javascript:void(0)" data-namespace="GObject" data-link="signal.Object.notify.html">GObject.Object::notify</a></h6>
+            <div class="docblock">
+              <p>The notify signal is emitted on an object when one of its properties has
+its value set through g_object_set_property(), g_object_set(), et&nbsp;al.</p>
+            </div>
+            
+          
+          </div>
+        </div>
+        
+      
+
+      
+
+    </div>
+    
+
+    
+    <div class="class toggle-wrapper default-hide">
+      <h4 id="class-struct">
+        Class structure
+        <a href="#class-struct" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <pre><code>struct LasemSvgElementClass {
+  LsmDomElementClass parent_class;
+  LsmAttributeManager* attribute_manager;
+  LsmSvgElementCategory category;
+  void (* enable_rendering) (
+    LsmSvgElement* element
+  );
+  void (* render) (
+    LsmSvgElement* element,
+    LsmSvgView* view
+  );
+  void (* get_extents) (
+    LsmSvgElement* element,
+    LsmSvgView* view,
+    LsmExtents* extents
+  );
+  void (* transformed_render) (
+    LsmSvgElement* element,
+    LsmSvgView* view
+  );
+  void (* transformed_get_extents) (
+    LsmSvgElement* element,
+    LsmSvgView* view,
+    LsmExtents* extents
+  );
+  gboolean is_shape_element;
+  
+}</code></pre>
+      </div>
+
+      
+      <div class="docblock">
+        <h6>Class members</h6>
+
+        <table class="members">
+        
+        <tr>
+          <td style="vertical-align:top"><code>parent_class</code></td>
+          <td style="vertical-align:top"><pre><code>LsmDomElementClass</code></pre></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td style="vertical-align:top">No description available.</td>
+        </td>
+        
+        <tr>
+          <td style="vertical-align:top"><code>attribute_manager</code></td>
+          <td style="vertical-align:top"><pre><code>LsmAttributeManager*</code></pre></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td style="vertical-align:top">No description available.</td>
+        </td>
+        
+        <tr>
+          <td style="vertical-align:top"><code>category</code></td>
+          <td style="vertical-align:top"><pre><code>LsmSvgElementCategory</code></pre></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td style="vertical-align:top">No description available.</td>
+        </td>
+        
+        <tr>
+          <td style="vertical-align:top"><code>enable_rendering</code></td>
+          <td style="vertical-align:top"><pre><code>void (* enable_rendering) (
+    LsmSvgElement* element
+  )</code></pre></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td style="vertical-align:top">No description available.</td>
+        </td>
+        
+        <tr>
+          <td style="vertical-align:top"><code>render</code></td>
+          <td style="vertical-align:top"><pre><code>void (* render) (
+    LsmSvgElement* element,
+    LsmSvgView* view
+  )</code></pre></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td style="vertical-align:top">No description available.</td>
+        </td>
+        
+        <tr>
+          <td style="vertical-align:top"><code>get_extents</code></td>
+          <td style="vertical-align:top"><pre><code>void (* get_extents) (
+    LsmSvgElement* element,
+    LsmSvgView* view,
+    LsmExtents* extents
+  )</code></pre></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td style="vertical-align:top">No description available.</td>
+        </td>
+        
+        <tr>
+          <td style="vertical-align:top"><code>transformed_render</code></td>
+          <td style="vertical-align:top"><pre><code>void (* transformed_render) (
+    LsmSvgElement* element,
+    LsmSvgView* view
+  )</code></pre></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td style="vertical-align:top">No description available.</td>
+        </td>
+        
+        <tr>
+          <td style="vertical-align:top"><code>transformed_get_extents</code></td>
+          <td style="vertical-align:top"><pre><code>void (* transformed_get_extents) (
+    LsmSvgElement* element,
+    LsmSvgView* view,
+    LsmExtents* extents
+  )</code></pre></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td style="vertical-align:top">No description available.</td>
+        </td>
+        
+        <tr>
+          <td style="vertical-align:top"><code>is_shape_element</code></td>
+          <td style="vertical-align:top"><pre><code>gboolean</code></pre></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td style="vertical-align:top">No description available.</td>
+        </td>
+        
+        </table>
+      </div>
+      
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="virtual-methods">
+        Virtual methods
+        <a href="#virtual-methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6 id="vfunc-enable_rendering"><a href="vfunc.SvgElement.enable_rendering.html">Lasem.SvgElementClass.enable_rendering</a></h6>
+
+        <div class="docblock">
+          No description available.
+        </div>
+
+          
+      </div>
+      
+      <div class="">
+        <h6 id="vfunc-get_extents"><a href="vfunc.SvgElement.get_extents.html">Lasem.SvgElementClass.get_extents</a></h6>
+
+        <div class="docblock">
+          No description available.
+        </div>
+
+          
+      </div>
+      
+      <div class="">
+        <h6 id="vfunc-render"><a href="vfunc.SvgElement.render.html">Lasem.SvgElementClass.render</a></h6>
+
+        <div class="docblock">
+          No description available.
+        </div>
+
+          
+      </div>
+      
+      <div class="">
+        <h6 id="vfunc-transformed_get_extents"><a href="vfunc.SvgElement.transformed_get_extents.html">Lasem.SvgElementClass.transformed_get_extents</a></h6>
+
+        <div class="docblock">
+          No description available.
+        </div>
+
+          
+      </div>
+      
+      <div class="">
+        <h6 id="vfunc-transformed_render"><a href="vfunc.SvgElement.transformed_render.html">Lasem.SvgElementClass.transformed_render</a></h6>
+
+        <div class="docblock">
+          No description available.
+        </div>
+
+          
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+      
+      <li class="toc-list-item"><a href="#ancestors"><span class="link-text">Ancestors</span></a></li>
+      
+      
+      
+
+      
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+      
+
+      
+
+      
+
+      
+<li class="toc-list-item"><a href="#virtual-methods"><span class="link-text">Virtual methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+</body>
+</html>

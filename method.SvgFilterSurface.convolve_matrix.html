@@ -1,0 +1,419 @@
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lasem.SvgFilterSurface.convolve_matrix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8" />
+
+  
+  <meta property="og:type" content="website"/>
+
+  
+
+  
+  <meta priority="og:title" content="Lasem.SvgFilterSurface.convolve_matrix"/>
+  <meta priority="og:description" content="Reference for Lasem.SvgFilterSurface.convolve_matrix"/>
+  <meta name="twitter:title" content="Lasem.SvgFilterSurface.convolve_matrix"/>
+  <meta name="twitter:description" content="Reference for Lasem.SvgFilterSurface.convolve_matrix"/>
+
+
+  
+  <meta name="twitter:card" content="summary"/>
+
+  
+  
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css" />
+
+  
+
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    <nav class="sidebar devhelp-hidden">
+      
+      
+      <div class="search section">
+        <form id="search-form" autocomplete="off">
+          <input id="search-input" type="text" name="do-not-autocomplete" placeholder="Click, or press 's' to search" autocomplete="off"/>
+        </form>
+      </div>
+      
+      <div class="section namespace">
+        <h3><a href="index.html">Lasem</a></h3>
+        <p>API Version: 0.7</p>
+        
+        <p>Library Version: 0.7.0</p>
+        
+      </div>
+      
+<div class="section">
+  <h5>Type</h5>
+  <div class="links">
+    <a href="struct.SvgFilterSurface.html">SvgFilterSurface</a>
+  </div>
+</div>
+<div class="section">
+  <h5>Methods</h5>
+  <div class="links">
+  
+    <a class="method" href="method.SvgFilterSurface.alpha.html">alpha</a>
+  
+    <a class="method" href="method.SvgFilterSurface.blend.html">blend</a>
+  
+    <a class="method" href="method.SvgFilterSurface.blur.html">blur</a>
+  
+    <a class="method" href="method.SvgFilterSurface.color_matrix.html">color_matrix</a>
+  
+    <a class="method current" href="method.SvgFilterSurface.convolve_matrix.html">convolve_matrix</a>
+  
+    <a class="method" href="method.SvgFilterSurface.displacement_map.html">displacement_map</a>
+  
+    <a class="method" href="method.SvgFilterSurface.flood.html">flood</a>
+  
+    <a class="method" href="method.SvgFilterSurface.get_cairo_surface.html">get_cairo_surface</a>
+  
+    <a class="method" href="method.SvgFilterSurface.get_name.html">get_name</a>
+  
+    <a class="method" href="method.SvgFilterSurface.get_subregion.html">get_subregion</a>
+  
+    <a class="method" href="method.SvgFilterSurface.image.html">image</a>
+  
+    <a class="method" href="method.SvgFilterSurface.merge.html">merge</a>
+  
+    <a class="method" href="method.SvgFilterSurface.morphology.html">morphology</a>
+  
+    <a class="method" href="method.SvgFilterSurface.offset.html">offset</a>
+  
+    <a class="method" href="method.SvgFilterSurface.ref.html">ref</a>
+  
+    <a class="method" href="method.SvgFilterSurface.specular_lighting.html">specular_lighting</a>
+  
+    <a class="method" href="method.SvgFilterSurface.tile.html">tile</a>
+  
+    <a class="method" href="method.SvgFilterSurface.turbulence.html">turbulence</a>
+  
+    <a class="method" href="method.SvgFilterSurface.unref.html">unref</a>
+  
+  </div>
+</div>
+
+    </nav>
+    
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Method</h3>
+    <h1><a href="index.html">Lasem</a><span class="sep"></span><a href="struct.SvgFilterSurface.html">SvgFilterSurface</a><span class="sep"></span>convolve_matrix</h1>
+  </header>
+
+  <section>
+    <div class="declaration toggle-wrapper">
+      <h4 style="display:flex;" id="declaration">
+        Declaration
+        <a class="anchor" href="#declaration"></a>
+        
+      </h4>
+
+      <div class="docblock c-decl">
+        <pre><code><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"></span>
+<span class="n">lsm_svg_filter_surface_convolve_matrix</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgFilterSurface</span><span class="o">*</span><span class="w"> </span><span class="n">input</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgFilterSurface</span><span class="o">*</span><span class="w"> </span><span class="n">output</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">x_order</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">y_order</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">n_values</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">values</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">divisor</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">bias</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">target_x</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="n">target_y</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgEdgeMode</span><span class="w"> </span><span class="n">edge_mode</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">gboolean</span><span class="w"> </span><span class="n">preserve_alpha</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
+</pre></div>
+</code></pre>
+      </div>
+    </div>
+
+    <div class="description toggle-wrapper">
+      <h4 style="display:flex;" id="description">
+        Description
+        <a class="anchor" href="#description"></a>
+        
+      </h4>
+
+      <div class="docblock">
+        No description available.
+      </div>
+
+      <div class="docblock">
+        <table>
+          
+          
+          
+          
+          
+          
+        </table>
+      </div>
+
+      
+    </div>
+
+    
+    <div class="parameters toggle-wrapper">
+      <h4 id="parameters">
+        Parameters
+        <a href="#parameters" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+        <table class="arguments">
+          
+          <tr class="arg-name">
+            <td><code>output</code></td>
+            <td><a href="struct.SvgFilterSurface.html"><code>LsmSvgFilterSurface</code></a></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td>No description available.</td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          <tr><td>&nbsp;</td><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+          
+          
+          <tr class="arg-name">
+            <td><code>x_order</code></td>
+            <td><code>unsigned</code></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td>No description available.</td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <tr class="arg-name">
+            <td><code>y_order</code></td>
+            <td><code>unsigned</code></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td>No description available.</td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <tr class="arg-name">
+            <td><code>n_values</code></td>
+            <td><code>unsigned</code></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td>No description available.</td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <tr class="arg-name">
+            <td><code>values</code></td>
+            <td><code>const double*</code></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td>No description available.</td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          <tr><td>&nbsp;</td><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+          
+          
+          <tr class="arg-name">
+            <td><code>divisor</code></td>
+            <td><code>double</code></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td>No description available.</td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <tr class="arg-name">
+            <td><code>bias</code></td>
+            <td><code>double</code></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td>No description available.</td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <tr class="arg-name">
+            <td><code>target_x</code></td>
+            <td><code>unsigned</code></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td>No description available.</td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <tr class="arg-name">
+            <td><code>target_y</code></td>
+            <td><code>unsigned</code></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td>No description available.</td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <tr class="arg-name">
+            <td><code>edge_mode</code></td>
+            <td><a href="enum.SvgEdgeMode.html"><code>LsmSvgEdgeMode</code></a></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td>No description available.</td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <tr class="arg-name">
+            <td><code>preserve_alpha</code></td>
+            <td><code>gboolean</code></td>
+          </tr>
+          <tr class="arg-description">
+            <td>&nbsp;</td>
+            <td>No description available.</td>
+          </tr>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+        </table>
+      </div>
+    </div>
+    
+
+    
+
+  </section>
+</section>
+
+
+    
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+</body>
+</html>

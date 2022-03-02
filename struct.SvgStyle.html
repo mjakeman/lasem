@@ -1,0 +1,664 @@
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!--
+SPDX-FileCopyrightText: 2021 GNOME Foundation
+
+SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Lasem.SvgStyle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta charset="utf-8" />
+
+  
+  <meta property="og:type" content="website"/>
+
+  
+
+  
+  <meta property="og:title" content="Lasem.SvgStyle"/>
+  <meta property="og:description" content="Reference for Lasem.SvgStyle"/>
+  <meta name="twitter:title" content="Lasem.SvgStyle"/>
+  <meta name="twitter:description" content="Reference for Lasem.SvgStyle"/>
+
+
+  
+  <meta name="twitter:card" content="summary"/>
+
+  
+  
+  
+  
+
+  <link rel="stylesheet" href="style.css" type="text/css" />
+
+  
+
+  
+  
+  <script src="fzy.js"></script>
+  <script src="search.js"></script>
+  
+  <script src="main.js"></script>
+  <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+  <div id="body-wrapper" tabindex="-1">
+
+    <nav class="sidebar devhelp-hidden">
+      
+      
+      <div class="search section">
+        <form id="search-form" autocomplete="off">
+          <input id="search-input" type="text" name="do-not-autocomplete" placeholder="Click, or press 's' to search" autocomplete="off"/>
+        </form>
+      </div>
+      
+      <div class="section namespace">
+        <h3><a href="index.html">Lasem</a></h3>
+        <p>API Version: 0.7</p>
+        
+        <p>Library Version: 0.7.0</p>
+        
+      </div>
+      
+<div class="section">
+  <h5>Type</h5>
+  <div class="links">
+    <a class="current" href="struct.SvgStyle.html#description">SvgStyle</a>
+  </div>
+</div>
+
+
+
+
+<div class="section">
+  <h5>Functions</h5>
+  <div class="links">
+  
+    <a class="func" href="type_func.SvgStyle.new.html">new</a>
+  
+  </div>
+</div>
+
+
+
+<div class="section">
+  <h5>Instance methods</h5>
+  <div class="links">
+  
+    <a class="method" href="method.SvgStyle.new_inherited.html">new_inherited</a>
+  
+    <a class="method" href="method.SvgStyle.ref.html">ref</a>
+  
+    <a class="method" href="method.SvgStyle.unref.html">unref</a>
+  
+  </div>
+</div>
+
+
+
+    </nav>
+    
+    <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
+
+    
+<section id="main" class="content">
+  <header>
+    <h3>Struct</h3>
+    <h1><a href="index.html">Lasem</a><span class="sep"></span>SvgStyle</h1>
+  </header>
+
+  <section>
+    <summary>
+      <div class="toggle-wrapper">
+        <h4 style="display:flex;" id="description">
+          Description
+          <a href="#description" class="anchor"></a>
+          
+        </h4>
+
+        <pre><code><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">LsmSvgStyle</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">alignment_baseline</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">baseline_shift</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">clip</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">clip_path</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgCompOpProperty</span><span class="o">*</span><span class="w"> </span><span class="n">comp_op</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">dominant_baseline</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgEnableBackgroundProperty</span><span class="o">*</span><span class="w"> </span><span class="n">enable_background</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">filter</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgColorProperty</span><span class="o">*</span><span class="w"> </span><span class="n">flood_color</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgDoubleProperty</span><span class="o">*</span><span class="w"> </span><span class="n">flood_opacity</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgColorProperty</span><span class="o">*</span><span class="w"> </span><span class="n">lighting_color</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">mask</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgDoubleProperty</span><span class="o">*</span><span class="w"> </span><span class="n">opacity</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgOverflowProperty</span><span class="o">*</span><span class="w"> </span><span class="n">overflow</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgColorProperty</span><span class="o">*</span><span class="w"> </span><span class="n">stop_color</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgDoubleProperty</span><span class="o">*</span><span class="w"> </span><span class="n">stop_opacity</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">text_decoration</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">unicode_bidi</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgPaintProperty</span><span class="o">*</span><span class="w"> </span><span class="n">viewport_fill</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgDoubleProperty</span><span class="o">*</span><span class="w"> </span><span class="n">viewport_fill_opacity</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgFillRuleProperty</span><span class="o">*</span><span class="w"> </span><span class="n">clip_rule</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgColorProperty</span><span class="o">*</span><span class="w"> </span><span class="n">color</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">color_interpolation</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">color_interpolation_filters</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">color_profile</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">color_rendering</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">cursor</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">direction</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgDisplayProperty</span><span class="o">*</span><span class="w"> </span><span class="n">display</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgPaintProperty</span><span class="o">*</span><span class="w"> </span><span class="n">fill</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgDoubleProperty</span><span class="o">*</span><span class="w"> </span><span class="n">fill_opacity</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgFillRuleProperty</span><span class="o">*</span><span class="w"> </span><span class="n">fill_rule</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">font</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">font_family</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgLengthProperty</span><span class="o">*</span><span class="w"> </span><span class="n">font_size</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">font_size_adjust</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgFontStretchProperty</span><span class="o">*</span><span class="w"> </span><span class="n">font_stretch</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgFontStyleProperty</span><span class="o">*</span><span class="w"> </span><span class="n">font_style</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">font_variant</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgFontWeightProperty</span><span class="o">*</span><span class="w"> </span><span class="n">font_weight</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">glyph_orientation_horizontal</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">glyph_orientation_vertical</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">image_rendering</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">kerning</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">letter_spacing</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">marker</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">marker_end</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">marker_mid</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">marker_start</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">pointer_events</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">shape_rendering</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgPaintProperty</span><span class="o">*</span><span class="w"> </span><span class="n">stroke</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgDashArrayProperty</span><span class="o">*</span><span class="w"> </span><span class="n">stroke_dash_array</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgLengthProperty</span><span class="o">*</span><span class="w"> </span><span class="n">stroke_dash_offset</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgLineCapProperty</span><span class="o">*</span><span class="w"> </span><span class="n">stroke_line_cap</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgLineJoinProperty</span><span class="o">*</span><span class="w"> </span><span class="n">stroke_line_join</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgDoubleProperty</span><span class="o">*</span><span class="w"> </span><span class="n">stroke_miter_limit</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgDoubleProperty</span><span class="o">*</span><span class="w"> </span><span class="n">stroke_opacity</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgLengthProperty</span><span class="o">*</span><span class="w"> </span><span class="n">stroke_width</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgTextAnchorProperty</span><span class="o">*</span><span class="w"> </span><span class="n">text_anchor</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">text_rendering</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgVisibilityProperty</span><span class="o">*</span><span class="w"> </span><span class="n">visibility</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmProperty</span><span class="o">*</span><span class="w"> </span><span class="n">word_spacing</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">LsmSvgWritingModeProperty</span><span class="o">*</span><span class="w"> </span><span class="n">writing_mode</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">font_size_px</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">gboolean</span><span class="w"> </span><span class="n">ignore_group_opacity</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</code></pre>
+
+        <div class="docblock">
+          No description available.
+        </div>
+
+        
+        <div class="toggle-wrapper">
+          <h6 style="display:flex;">
+            Structure members
+            
+          </h6>
+
+          <div class="docblock">
+            <table>
+            
+              <tr>
+                <td><code>alignment_baseline</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>baseline_shift</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>clip</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>clip_path</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>comp_op</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>dominant_baseline</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>enable_background</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>filter</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>flood_color</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>flood_opacity</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>lighting_color</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>mask</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>opacity</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>overflow</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>stop_color</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>stop_opacity</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>text_decoration</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>unicode_bidi</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>viewport_fill</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>viewport_fill_opacity</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>clip_rule</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>color</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>color_interpolation</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>color_interpolation_filters</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>color_profile</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>color_rendering</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>cursor</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>direction</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>display</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>fill</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>fill_opacity</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>fill_rule</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>font</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>font_family</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>font_size</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>font_size_adjust</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>font_stretch</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>font_style</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>font_variant</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>font_weight</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>glyph_orientation_horizontal</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>glyph_orientation_vertical</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>image_rendering</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>kerning</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>letter_spacing</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>marker</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>marker_end</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>marker_mid</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>marker_start</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>pointer_events</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>shape_rendering</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>stroke</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>stroke_dash_array</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>stroke_dash_offset</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>stroke_line_cap</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>stroke_line_join</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>stroke_miter_limit</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>stroke_opacity</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>stroke_width</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>text_anchor</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>text_rendering</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>visibility</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>word_spacing</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>writing_mode</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>font_size_px</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+              <tr>
+                <td><code>ignore_group_opacity</code></td>
+                <td>No description available.</td>
+              </tr>
+            
+            </table>
+          </div>
+        </div>
+        
+
+        <div class="docblock">
+          <table class="attributes">
+            
+            
+            
+          </table>
+        </div>
+
+        
+      </div>
+    </summary>
+
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="type-functions">
+        Functions
+        <a href="#type-functions" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+      <div class="">
+        <h6><a href="type_func.SvgStyle.new.html">lsm_svg_style_new</a></h6>
+
+        <div class="docblock">
+          No description available.
+        </div>
+
+        
+      </div>
+      
+      </div>
+    </div>
+    
+
+    
+    <div class="toggle-wrapper methods">
+      <h4 id="methods">
+        Instance methods
+        <a href="#methods" class="anchor"></a>
+      </h4>
+
+      <div class="docblock">
+      
+        <div class="">
+          <h6><a href="method.SvgStyle.new_inherited.html">lsm_svg_style_new_inherited</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.SvgStyle.ref.html">lsm_svg_style_ref</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+        <div class="">
+          <h6><a href="method.SvgStyle.unref.html">lsm_svg_style_unref</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
+      
+      </div>
+
+    </div>
+    
+
+  </section>
+</section>
+
+
+    
+<div id="toc" class="toc">
+  <nav aria-labelledby="toc-title">
+    <p id="toc-title">Content</p>
+    <ul class="toc-list">
+      <li class="toc-list-item"><a href="#description"><span class="link-text">Description</span></a></li>
+      
+      
+
+      
+<li class="toc-list-item"><a href="#type-functions"><span class="link-text">Functions</span></a></li>
+
+
+      
+<li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
+
+
+    </ul>
+  </nav>
+</div>
+
+
+    <section id="search" class="content hidden"></section>
+
+    <footer>
+    
+    </footer>
+  </div>
+</body>
+</html>
