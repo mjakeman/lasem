@@ -2,6 +2,7 @@
 
 #include <lsm.h>
 #include <lsmdom.h>
+#include <lsmmathml.h>
 
 #include <cairo.h>
 
@@ -14,12 +15,18 @@ struct _DemoWindow
 {
     GtkApplicationWindow parent_instance;
 
-    GtkWidget *lasem_view;
-    GtkWidget *text_view;
+    GtkDrawingArea *lasem_view;
+    GtkTextView *text_view;
+    GtkLabel *status_label;
+    GtkButton *render_btn;
 
     LsmDomDocument *document;
-    LsmDomView *view;
     GError *error;
+
+    LsmDomView *view;
+    double multiplier;
+
+    LsmMathmlElement *pick;
 };
 
 G_DEFINE_FINAL_TYPE (DemoWindow, demo_window, GTK_TYPE_APPLICATION_WINDOW)
@@ -44,14 +51,6 @@ demo_window_finalize (GObject *object)
     g_clear_pointer (&self->document, g_object_unref);
 
     G_OBJECT_CLASS (demo_window_parent_class)->finalize (object);
-}
-
-static void
-demo_window_class_init (DemoWindowClass *klass)
-{
-    GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-    object_class->finalize = demo_window_finalize;
 }
 
 static void
@@ -94,7 +93,7 @@ demo_window_render (DemoWindow *window)
         window->view = lsm_dom_document_create_view (window->document);
     }
 
-    gtk_widget_queue_draw (window->lasem_view);
+    gtk_widget_queue_draw (GTK_WIDGET (window->lasem_view));
 }
 
 static void
@@ -107,53 +106,109 @@ lasem_view_draw (GtkDrawingArea *drawing_area,
     if (window->view == NULL)
         return;
 
-    int margin = 25;
+    window->multiplier = 3;
+    lsm_dom_view_set_resolution (window->view, window->multiplier * LSM_DOM_VIEW_DEFAULT_RESOLUTION);
 
-    guint content_width = 0;
-    guint content_height = 0;
-    guint baseline = 0;
-    lsm_dom_view_get_size_pixels (window->view, &content_width, &content_height, &baseline);
+    lsm_dom_view_render (window->view, cr, 0, 0);
 
-    float multiplier = ((float)width - (2 * margin)) / content_width;
-    lsm_dom_view_set_resolution (window->view, multiplier * LSM_DOM_VIEW_DEFAULT_RESOLUTION);
+    if (window->pick)
+    {
+        double baseline = 0;
+        lsm_dom_view_get_size (window->view, NULL, NULL, &baseline);
 
-    lsm_dom_view_render (window->view, cr, margin, margin);
+        cairo_scale (cr, window->multiplier, window->multiplier);
+        cairo_translate (cr, 0, baseline);
+        cairo_set_source_rgba (cr, 246/255.0, 97/255.0, 81/255.0, 0.2);
+        cairo_rectangle (cr,
+                         window->pick->x,
+                         window->pick->y,
+                         window->pick->bbox.width,
+                         -window->pick->bbox.height);
+        cairo_fill (cr);
+
+        cairo_set_source_rgba (cr, 153/255.0, 193/255.0, 241/255.0, 0.2);
+        cairo_rectangle (cr,
+                         window->pick->x,
+                         window->pick->y,
+                         window->pick->bbox.width,
+                         window->pick->bbox.depth);
+        cairo_fill (cr);
+    }
+}
+
+static void
+cb_motion (GtkEventControllerMotion *controller,
+           gdouble                   x,
+           gdouble                   y,
+           DemoWindow               *self)
+{
+    if (self->view == NULL)
+        return;
+
+    self->pick = lsm_mathml_view_pick (self->view,
+                                       x / self->multiplier,
+                                       y / self->multiplier);
+
+    if (self->pick != NULL)
+    {
+        const char *fmt;
+        fmt = g_strdup_printf ("Picked '%s' (<%s>) at:\nX: %.2lf\nY: %.2lf\nElement X: %.2lf\nElement Y: %.2lf\nElement Width: %.2lf\nElement Height: %.2lf\nElement Depth: %.2lf\n",
+                               g_type_name_from_instance ((GTypeInstance *)self->pick),
+                               lsm_dom_node_get_node_name (LSM_DOM_NODE (self->pick)),
+                               x, y, // TODO: These are GTK positions, not equation coords
+                               self->pick->x,
+                               self->pick->y,
+                               self->pick->bbox.width,
+                               self->pick->bbox.height,
+                               self->pick->bbox.depth);
+
+        gtk_label_set_label (self->status_label, fmt);
+    }
+    else
+        gtk_label_set_label (self->status_label, NULL);
+
+    GtkWidget *lasem_view = gtk_event_controller_get_widget (GTK_EVENT_CONTROLLER (controller));
+    gtk_widget_queue_draw (lasem_view);
+}
+
+static void
+demo_window_class_init (DemoWindowClass *klass)
+{
+    GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
+    object_class->finalize = demo_window_finalize;
+
+    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+    gtk_widget_class_set_template_from_resource (widget_class, "/com/mattjakeman/lsm-demo/demo.ui");
+
+    gtk_widget_class_bind_template_child (widget_class, DemoWindow, lasem_view);
+    gtk_widget_class_bind_template_child (widget_class, DemoWindow, text_view);
+    gtk_widget_class_bind_template_child (widget_class, DemoWindow, status_label);
+    gtk_widget_class_bind_template_child (widget_class, DemoWindow, render_btn);
 }
 
 static void
 demo_window_init (DemoWindow *self)
 {
-    gtk_window_set_title (GTK_WINDOW (self), "Lasem Demo");
-    gtk_window_set_default_size (GTK_WINDOW (self), 800, 600);
+    gtk_widget_init_template (GTK_WIDGET (self));
 
-    GtkWidget *header_bar = gtk_header_bar_new ();
-    gtk_window_set_titlebar (GTK_WINDOW (self), header_bar);
+    // Render Button
+    gtk_widget_add_css_class (GTK_WIDGET (self->render_btn), "suggested-action");
+    g_signal_connect_swapped (self->render_btn, "clicked", G_CALLBACK (demo_window_render), self);
 
-    GtkWidget *render_btn = gtk_button_new_with_label ("Render");
-    gtk_widget_add_css_class (render_btn, "suggested-action");
-    g_signal_connect_swapped (render_btn, "clicked", G_CALLBACK (demo_window_render), self);
-    gtk_header_bar_pack_end (GTK_HEADER_BAR (header_bar), render_btn);
+    // Set text view placeholder contents
+    gtk_text_buffer_set_text (gtk_text_view_get_buffer (GTK_TEXT_VIEW (self->text_view)), mml, -1);
 
-    GtkWidget *hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-    gtk_box_set_homogeneous (GTK_BOX (hbox), TRUE);
-    gtk_window_set_child (GTK_WINDOW (self), hbox);
-
-    GtkWidget *text_view = gtk_text_view_new ();
-    self->text_view = text_view;
-
-    // Set placeholder contents
-    gtk_text_buffer_set_text (gtk_text_view_get_buffer (GTK_TEXT_VIEW (text_view)), mml, -1);
-
-    GtkWidget *scroll_area = gtk_scrolled_window_new ();
-    gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (scroll_area), text_view);
-    gtk_box_append (GTK_BOX (hbox), scroll_area);
-
-    GtkWidget *lasem_view = gtk_drawing_area_new ();
-    gtk_box_append (GTK_BOX (hbox), lasem_view);
-    gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (lasem_view),
+    // Drawing area for Lasem Equation
+    gtk_drawing_area_set_draw_func (GTK_DRAWING_AREA (self->lasem_view),
                                     (GtkDrawingAreaDrawFunc) lasem_view_draw,
                                     self, NULL);
-    self->lasem_view = lasem_view;
+
+    // Respond to mouse movement (for picking)
+    GtkEventController *motion_controller = gtk_event_controller_motion_new ();
+    g_signal_connect (motion_controller, "motion", G_CALLBACK (cb_motion), self);
+    gtk_widget_add_controller (GTK_WIDGET (self->lasem_view), motion_controller);
 
     demo_window_render (self);
 }
