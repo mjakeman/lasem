@@ -251,21 +251,21 @@ lasem_header_install_dir = 'lasem-' + lasem_api_version
 # custom targets (glib mkenums)
 gnome = import('gnome')
 
-lasem_dom_types = gnome.mkenums_simple(
+lasem_dom_sources += gnome.mkenums_simple(
 	'lsmdomenumtypes',
 	sources : lasem_dom_headers,
 	install_dir : join_paths(get_option('includedir'), lasem_header_install_dir),
 	install_header : true
 )
 
-lasem_mathml_types = gnome.mkenums_simple(
+lasem_mathml_sources += gnome.mkenums_simple(
 	'lsmmathmlenumtypes',
 	sources : lasem_mathml_headers,
 	install_dir : join_paths(get_option('includedir'), lasem_header_install_dir),
 	install_header : true
 )
 
-lasem_svg_types = gnome.mkenums_simple(
+lasem_svg_sources += gnome.mkenums_simple(
 	'lsmsvgenumtypes',
 	sources : lasem_svg_headers,
 	install_dir : join_paths(get_option('includedir'), lasem_header_install_dir),
@@ -275,18 +275,13 @@ lasem_svg_types = gnome.mkenums_simple(
 # combine sources
 sources = [
 	# Sources
-    lasem_dom_sources,
-    lasem_mathml_sources,
-    lasem_svg_sources,
+  lasem_dom_sources,
+  lasem_mathml_sources,
+  lasem_svg_sources,
 
-    # Headers
-    lasem_mathml_headers,
-    lasem_svg_headers,
-
-    # Built Sources
-	lasem_dom_types,
-	lasem_mathml_types,
-	lasem_svg_types
+  # Headers
+  lasem_mathml_headers,
+  lasem_svg_headers,
 ]
 
 # install headers
@@ -319,7 +314,7 @@ if get_option('introspection').enabled() or get_option('docs').enabled()
 	# used later by gi-docgen
 	lasem_gir = gnome.generate_gir(
 		liblasem,
-		sources: [lasem_dom_sources, lasem_dom_headers],
+		sources: sources,
 		nsversion: lasem_api_version,
 		namespace: 'Lasem',
 		symbol_prefix: 'lsm',
