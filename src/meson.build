@@ -280,6 +280,7 @@ sources = [
   lasem_svg_sources,
 
   # Headers
+  lasem_dom_headers,
   lasem_mathml_headers,
   lasem_svg_headers,
 ]
