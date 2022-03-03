@@ -163,7 +163,7 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
           
         </h4>
 
-        <pre><code>class Lasem.MathmlView : GObject.Object {
+        <pre><code>class Lasem.MathmlView : Lasem.DomView {
   dom_view: LsmDomView
 }</pre></code>
 
@@ -194,6 +194,10 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
 
       <div class="docblock">
         <ul>
+        
+          
+          <li class="class"><a href="class.DomView.html" title="DomView">LsmDomView</a></li>
+          
         
           
           <li class="class"><a class="external" href="javascript:void(0)" data-link="class.Object.html" data-namespace="GObject">GObject</a></li>
@@ -382,6 +386,69 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
 
       
         
+        <div class="toggle-wrapper default-hide ancestor-methods">
+          <h5 style="display:block;">Methods inherited from <a href="class.DomView.html">LsmDomView</a> (11)</h5><div class="docblock">
+          
+            <h6><a href="method.DomView.get_resolution.html">lsm_dom_view_get_resolution</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomView.get_size.html">lsm_dom_view_get_size</a></h6><div class="docblock">
+              <p>Get the view size and baseline. Baseline is for use of view inside bloc of&nbsp;text.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomView.get_size_pixels.html">lsm_dom_view_get_size_pixels</a></h6><div class="docblock">
+              <p>Get the view size and baseline. Baseline is for use of view inside bloc of&nbsp;text.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomView.get_viewport.html">lsm_dom_view_get_viewport</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomView.get_viewport_pixels.html">lsm_dom_view_get_viewport_pixels</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomView.render.html">lsm_dom_view_render</a></h6><div class="docblock">
+              <p>Render <code>view</code> in the <code>cairo</code> context.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomView.set_debug.html">lsm_dom_view_set_debug</a></h6><div class="docblock">
+              <p>Configure feature&nbsp;debug.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomView.set_document.html">lsm_dom_view_set_document</a></h6><div class="docblock">
+              <p>Change the document attached to <code>view</code>. The previously attached document is&nbsp;unreferenced.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomView.set_resolution.html">lsm_dom_view_set_resolution</a></h6><div class="docblock">
+              <p>Set the view resolution, in pixel per&nbsp;inch.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomView.set_viewport.html">lsm_dom_view_set_viewport</a></h6><div class="docblock">
+              <p>Set the viewport&nbsp;size.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomView.set_viewport_pixels.html">lsm_dom_view_set_viewport_pixels</a></h6><div class="docblock">
+              <p>Set the viewport&nbsp;size.</p>
+            </div>
+            
+          
+          </div>
+        </div>
+        
+      
+        
         <div class="toggle-wrapper default-hide ancestor-methods"><h5 style="display:block;">Methods inherited from <a class="external" href="javascript:void(0)" data-link="class.Object.html" data-namespace="GObject">GObject</a> (42)</h5>
           <div class="docblock">
           
@@ -409,6 +476,8 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
 
       
 
+      
+        
       
         
         <div class="toggle-wrapper default-hide ancestor-signals"><h5 style="display:block;">Signals inherited from <a class="external" href="javascript:void(0)" data-link="class.Object.html" data-namespace="GObject">GObject</a> (1)</h5>

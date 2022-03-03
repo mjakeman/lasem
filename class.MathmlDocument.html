@@ -83,6 +83,8 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
   <h5>Constructors</h5>
   <div class="links">
   
+    <a class="ctor" href="ctor.MathmlDocument.new.html">new</a>
+  
     <a class="ctor" href="ctor.MathmlDocument.new_from_itex.html">new_from_itex</a>
   
     <a class="ctor" href="ctor.MathmlDocument.new_from_itex_path.html">new_from_itex_path</a>
@@ -93,15 +95,6 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
 </div>
 
 
-
-<div class="section">
-  <h5>Functions</h5>
-  <div class="links">
-  
-    <a class="func" href="type_func.MathmlDocument.new.html">new</a>
-  
-  </div>
-</div>
 
 
 
@@ -144,7 +137,7 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
           
         </h4>
 
-        <pre><code>class Lasem.MathmlDocument : GObject.Object {
+        <pre><code>class Lasem.MathmlDocument : Lasem.DomDocument {
   document: LsmDomDocument
 }</pre></code>
 
@@ -177,6 +170,14 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
         <ul>
         
           
+          <li class="class"><a href="class.DomDocument.html" title="DomDocument">LsmDomDocument</a></li>
+          
+        
+          
+          <li class="class"><a href="class.DomNode.html" title="DomNode">LsmDomNode</a></li>
+          
+        
+          
           <li class="class"><a class="external" href="javascript:void(0)" data-link="class.Object.html" data-namespace="GObject">GObject</a></li>
           
         
@@ -197,6 +198,16 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
       </h4>
 
       <div class="docblock">
+      
+        <div class="">
+          <h6><a href="ctor.MathmlDocument.new.html">lsm_mathml_document_new</a></h6>
+
+          <div class="docblock">
+            No description available.
+          </div>
+
+          
+        </div>
       
         <div class="">
           <h6><a href="ctor.MathmlDocument.new_from_itex.html">lsm_mathml_document_new_from_itex</a></h6>
@@ -233,27 +244,6 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
     
 
     
-    <div class="toggle-wrapper methods">
-      <h4 id="type-functions">
-        Functions
-        <a href="#type-functions" class="anchor"></a>
-      </h4>
-
-      <div class="docblock">
-      
-      <div class="">
-        <h6><a href="type_func.MathmlDocument.new.html">lsm_mathml_document_new</a></h6>
-
-        <div class="docblock">
-          No description available.
-        </div>
-
-        
-      </div>
-      
-      </div>
-    </div>
-    
 
     
     <div class="toggle-wrapper methods">
@@ -274,6 +264,183 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
       
       </div>
 
+      
+        
+        <div class="toggle-wrapper default-hide ancestor-methods">
+          <h5 style="display:block;">Methods inherited from <a href="class.DomDocument.html">LsmDomDocument</a> (13)</h5><div class="docblock">
+          
+            <h6><a href="method.DomDocument.append_from_memory.html">lsm_dom_document_append_from_memory</a></h6><div class="docblock">
+              <p>Append a chunk of xml tree to an existing document. The resulting nodes will be appended to
+<code>node</code>, or to <code>document</code> if <code>node</code> == <span class="caps">NULL</span>.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.create_element.html">lsm_dom_document_create_element</a></h6><div class="docblock">
+              <p>Create a new element node with a type corresponding to <code>tag_name</code>.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.create_text_node.html">lsm_dom_document_create_text_node</a></h6><div class="docblock">
+              <p>Create a text node with <code>data</code> as its initial&nbsp;content.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.create_view.html">lsm_dom_document_create_view</a></h6><div class="docblock">
+              <p>Create a <code>LsmDomView</code> for document&nbsp;rendering.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.get_document_element.html">lsm_dom_document_get_document_element</a></h6><div class="docblock">
+              <p>Get the child node that is the root element of the&nbsp;document.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.get_href_data.html">lsm_dom_document_get_href_data</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.get_url.html">lsm_dom_document_get_url</a></h6><div class="docblock">
+              <p>Get document <span class="caps">URL</span>.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.save_to_memory.html">lsm_dom_document_save_to_memory</a></h6><div class="docblock">
+              <p>Save <code>document</code> as an xml representation into <code>buffer</code>.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.save_to_path.html">lsm_dom_document_save_to_path</a></h6><div class="docblock">
+              <p>Save <code>document</code> as an xml representation to a file, replacing the already existing file if&nbsp;needed.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.save_to_stream.html">lsm_dom_document_save_to_stream</a></h6><div class="docblock">
+              <p>Save <code>document</code> as an xml representation into <code>stream</code>.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.save_to_url.html">lsm_dom_document_save_to_url</a></h6><div class="docblock">
+              <p>Save <code>document</code> as an xml representation to <code>url</code>, replacing the already existing file if&nbsp;needed.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.set_path.html">lsm_dom_document_set_path</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomDocument.set_url.html">lsm_dom_document_set_url</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+          </div>
+        </div>
+        
+      
+        
+        <div class="toggle-wrapper default-hide ancestor-methods">
+          <h5 style="display:block;">Methods inherited from <a href="class.DomNode.html">LsmDomNode</a> (18)</h5><div class="docblock">
+          
+            <h6><a href="method.DomNode.append_child.html">lsm_dom_node_append_child</a></h6><div class="docblock">
+              <p>Adds the node <code>new_child</code> to the end of the list of children of this node.
+If the <code>new_child</code> is already in the tree, it is first&nbsp;removed.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomNode.changed.html">lsm_dom_node_changed</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomNode.get_child_nodes.html">lsm_dom_node_get_child_nodes</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomNode.get_first_child.html">lsm_dom_node_get_first_child</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomNode.get_last_child.html">lsm_dom_node_get_last_child</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomNode.get_next_sibling.html">lsm_dom_node_get_next_sibling</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomNode.get_node_name.html">lsm_dom_node_get_node_name</a></h6><div class="docblock">
+              <p>Gets the node&nbsp;name.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomNode.get_node_type.html">lsm_dom_node_get_node_type</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomNode.get_node_value.html">lsm_dom_node_get_node_value</a></h6><div class="docblock">
+              <p>Gets the node&nbsp;value.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomNode.get_owner_document.html">lsm_dom_node_get_owner_document</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomNode.get_parent_node.html">lsm_dom_node_get_parent_node</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomNode.get_previous_sibling.html">lsm_dom_node_get_previous_sibling</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomNode.has_child_nodes.html">lsm_dom_node_has_child_nodes</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomNode.insert_before.html">lsm_dom_node_insert_before</a></h6><div class="docblock">
+              <p>Inserts the node <code>new_child</code> before the existing child node <code>ref_child</code>. If
+<code>ref_child</code> is null, insert <code>new_child</code> at the end of the list of children.
+If the <code>new_child</code> is already in the tree, it is first&nbsp;removed.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomNode.remove_child.html">lsm_dom_node_remove_child</a></h6><div class="docblock">
+              <p>Removes the child node indicated by <code>old_child</code> from the list of children, and returns&nbsp;it.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomNode.replace_child.html">lsm_dom_node_replace_child</a></h6><div class="docblock">
+              <p>Replaces the child node <code>old_child</code> with <code>new_child</code> in the list of children,
+and returns the <code>old_child</code> node.
+If the <code>new_child</code> is already in the tree, it is first&nbsp;removed.</p>
+            </div>
+            
+          
+            <h6><a href="method.DomNode.set_node_value.html">lsm_dom_node_set_node_value</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+            <h6><a href="method.DomNode.write_to_stream.html">lsm_dom_node_write_to_stream</a></h6><div class="docblock">
+              No description available.
+            </div>
+            
+          
+          </div>
+        </div>
+        
       
         
         <div class="toggle-wrapper default-hide ancestor-methods"><h5 style="display:block;">Methods inherited from <a class="external" href="javascript:void(0)" data-link="class.Object.html" data-namespace="GObject">GObject</a> (42)</h5>
@@ -303,6 +470,10 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
 
       
 
+      
+        
+      
+        
       
         
         <div class="toggle-wrapper default-hide ancestor-signals"><h5 style="display:block;">Signals inherited from <a class="external" href="javascript:void(0)" data-link="class.Object.html" data-namespace="GObject">GObject</a> (1)</h5>
@@ -384,8 +555,6 @@ its value set through g_object_set_property(), g_object_set(), et&nbsp;al.</p>
 
 
       
-<li class="toc-list-item"><a href="#type-functions"><span class="link-text">Functions</span></a></li>
-
 
       
 <li class="toc-list-item"><a href="#methods"><span class="link-text">Methods</span></a></li>
