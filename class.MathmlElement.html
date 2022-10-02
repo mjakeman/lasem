@@ -1,13 +1,7 @@
 <!--
-SPDX-FileCopyrightText: 2021 GNOME Foundation
+SPDX-FileCopyrightText: Lasem Developers
 
-SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
--->
-
-<!--
-SPDX-FileCopyrightText: 2021 GNOME Foundation
-
-SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+SPDX-License-Identifier: LGPL-2.0-or-later
 -->
 
 <!DOCTYPE html>
@@ -136,7 +130,7 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
 
 
     </nav>
-    
+
     <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
 
     
@@ -554,117 +548,67 @@ its value set through g_object_set_property(), g_object_set(), et&nbsp;al.</p>
 }</code></pre>
       </div>
 
+      <div class="docblock">
+        No description available.
+      </div>
+
       
       <div class="docblock">
         <h6>Class members</h6>
 
-        <table class="members">
+        <dl class="members">
         
-        <tr>
-          <td style="vertical-align:top"><code>parent_class</code></td>
-          <td style="vertical-align:top"><pre><code>LsmDomElementClass</code></pre></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td style="vertical-align:top">No description available.</td>
-        </td>
+          <dt><code>parent_class: LsmDomElementClass</code></dt>
+          <dd>No description available.</dd>
         
-        <tr>
-          <td style="vertical-align:top"><code>attribute_manager</code></td>
-          <td style="vertical-align:top"><pre><code>LsmAttributeManager*</code></pre></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td style="vertical-align:top">No description available.</td>
-        </td>
+          <dt><code>attribute_manager: LsmAttributeManager*</code></dt>
+          <dd>No description available.</dd>
         
-        <tr>
-          <td style="vertical-align:top"><code>update</code></td>
-          <td style="vertical-align:top"><pre><code>void (* update) (
+          <dt><code>update: void (* update) (
     LsmMathmlElement* element,
     LsmMathmlStyle* style
-  )</code></pre></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td style="vertical-align:top">No description available.</td>
-        </td>
+  )</code></dt>
+          <dd>No description available.</dd>
         
-        <tr>
-          <td style="vertical-align:top"><code>update_children</code></td>
-          <td style="vertical-align:top"><pre><code>gboolean (* update_children) (
+          <dt><code>update_children: gboolean (* update_children) (
     LsmMathmlElement* element,
     LsmMathmlStyle* style
-  )</code></pre></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td style="vertical-align:top">No description available.</td>
-        </td>
+  )</code></dt>
+          <dd>No description available.</dd>
         
-        <tr>
-          <td style="vertical-align:top"><code>measure</code></td>
-          <td style="vertical-align:top"><pre><code>const LsmMathmlBbox* (* measure) (
+          <dt><code>measure: const LsmMathmlBbox* (* measure) (
     LsmMathmlElement* element,
     LsmMathmlView* view,
     const LsmMathmlBbox* bbox
-  )</code></pre></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td style="vertical-align:top">No description available.</td>
-        </td>
+  )</code></dt>
+          <dd>No description available.</dd>
         
-        <tr>
-          <td style="vertical-align:top"><code>layout</code></td>
-          <td style="vertical-align:top"><pre><code>void (* layout) (
+          <dt><code>layout: void (* layout) (
     LsmMathmlElement* element,
     LsmMathmlView* view,
     double x,
     double y,
     const LsmMathmlBbox* bbox
-  )</code></pre></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td style="vertical-align:top">No description available.</td>
-        </td>
+  )</code></dt>
+          <dd>No description available.</dd>
         
-        <tr>
-          <td style="vertical-align:top"><code>render</code></td>
-          <td style="vertical-align:top"><pre><code>void (* render) (
+          <dt><code>render: void (* render) (
     LsmMathmlElement* element,
     LsmMathmlView* view
-  )</code></pre></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td style="vertical-align:top">No description available.</td>
-        </td>
+  )</code></dt>
+          <dd>No description available.</dd>
         
-        <tr>
-          <td style="vertical-align:top"><code>get_embellished_core</code></td>
-          <td style="vertical-align:top"><pre><code>LsmMathmlOperatorElement* (* get_embellished_core) (
+          <dt><code>get_embellished_core: LsmMathmlOperatorElement* (* get_embellished_core) (
     const LsmMathmlElement* self
-  )</code></pre></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td style="vertical-align:top">No description available.</td>
-        </td>
+  )</code></dt>
+          <dd>No description available.</dd>
         
-        <tr>
-          <td style="vertical-align:top"><code>is_inferred_row</code></td>
-          <td style="vertical-align:top"><pre><code>gboolean (* is_inferred_row) (
+          <dt><code>is_inferred_row: gboolean (* is_inferred_row) (
     const LsmMathmlElement* self
-  )</code></pre></td>
-        </tr>
-        <tr>
-          <td>&nbsp;</td>
-          <td style="vertical-align:top">No description available.</td>
-        </td>
+  )</code></dt>
+          <dd>No description available.</dd>
         
-        </table>
+        </dd>
       </div>
       
     </div>

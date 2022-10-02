@@ -1,13 +1,7 @@
 <!--
-SPDX-FileCopyrightText: 2021 GNOME Foundation
+SPDX-FileCopyrightText: Lasem Developers
 
-SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
--->
-
-<!--
-SPDX-FileCopyrightText: 2021 GNOME Foundation
-
-SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+SPDX-License-Identifier: LGPL-2.0-or-later
 -->
 
 <!DOCTYPE html>
@@ -81,7 +75,7 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
 
 
     </nav>
-    
+
     <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
 
     
@@ -143,46 +137,45 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
       </h4>
 
       <div class="docblock">
-        <table class="arguments">
+        <dl class="arguments">
           
-          <tr class="arg-name">
-            <td><code>itex</code></td>
-            <td><code>const char*</code></td>
-          </tr>
-          <tr class="arg-description">
-            <td>&nbsp;</td>
-            <td><p>An itex&nbsp;string.</p></td>
-          </tr>
+          <dt class="arg-name"><code>itex</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>const char*</code></p>
+            <p><p>An itex&nbsp;string.</p></p>
+            <table>
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            <tr><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </table>
+          </dd>
           
-          <tr><td>&nbsp;</td><td>The argument can be <code>NULL</code>.</td></tr>
+          <dt class="arg-name"><code>size</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>gssize</code></p>
+            <p><p>Itex string length, -1 if <span class="caps">NULL</span>&nbsp;terminated.</p></p>
+            <table>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </table>
+          </dd>
           
+
           
-          
-          
-          
-          <tr><td>&nbsp;</td><td title="transfer: none">The data is owned by the caller of the function.</td></tr>
-          <tr><td>&nbsp;</td><td>The value is a NUL terminated UTF-8 string.</td></tr>
-          
-          <tr class="arg-name">
-            <td><code>size</code></td>
-            <td><code>gssize</code></td>
-          </tr>
-          <tr class="arg-description">
-            <td>&nbsp;</td>
-            <td><p>Itex string length, -1 if <span class="caps">NULL</span>&nbsp;terminated.</p></td>
-          </tr>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-        </table>
+        </dl>
       </div>
     </div>
     
@@ -195,22 +188,22 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
       </h4>
 
       <div class="docblock">
-        <table class="returns">
-          <tr class="arg-name">
-            <td>Returns:</td>
-            <td><code>char*</code></td>
-          </tr>
-          <tr class="arg-description">
-            <td>&nbsp;</td>
-            <td><p>A newly allocated string, <span class="caps">NULL</span> on parse error. The returned data must be freed using <code>lsm_itex_free_mathml_buffer</code>.</p></td>
-          </tr>
-          
-          
-          
-          <tr><td>&nbsp;</td><td title="transfer: full">The caller of the function takes ownership of the data, and is responsible for freeing it.</td></tr>
-          
-          <tr><td>&nbsp;</td><td>The value is a NUL terminated UTF-8 string.</td></tr>
-        </table>
+        <div class="returns">
+          <div class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>char*</code></p>
+            <p><p>A newly allocated string, <span class="caps">NULL</span> on parse error. The returned data must be freed using <code>lsm_itex_free_mathml_buffer</code>.</p></td>
+          </div>
+          <div>
+            <table>
+            
+            
+            
+            <tr><td title="transfer: full">The caller of the function takes ownership of the data, and is responsible for freeing it.</td></tr>
+            
+            <tr><td>The value is a NUL terminated UTF-8 string.</td></tr>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
     

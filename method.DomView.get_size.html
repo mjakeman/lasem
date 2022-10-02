@@ -1,13 +1,7 @@
 <!--
-SPDX-FileCopyrightText: 2021 GNOME Foundation
+SPDX-FileCopyrightText: Lasem Developers
 
-SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
--->
-
-<!--
-SPDX-FileCopyrightText: 2021 GNOME Foundation
-
-SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
+SPDX-License-Identifier: LGPL-2.0-or-later
 -->
 
 <!DOCTYPE html>
@@ -107,7 +101,7 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
 </div>
 
     </nav>
-    
+
     <button id="btn-to-top" class="hidden"><span class="up-arrow"></span></button>
 
     
@@ -171,64 +165,62 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-3.0-or-later
       </h4>
 
       <div class="docblock">
-        <table class="arguments">
+        <dl class="arguments">
           
-          <tr class="arg-name">
-            <td><code>width</code></td>
-            <td><code>double*</code></td>
-          </tr>
-          <tr class="arg-description">
-            <td>&nbsp;</td>
-            <td><p>View width placeholder, in&nbsp;points.</p></td>
-          </tr>
-          <tr><td>&nbsp;</td><td title="direction: out">The argument will be set by the function.</td></tr>
+          <dt class="arg-name"><code>width</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>double*</code></p>
+            <p><p>View width placeholder, in&nbsp;points.</p></p>
+            <table>
+            <tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            </table>
+          </dd>
           
+          <dt class="arg-name"><code>height</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>double*</code></p>
+            <p><p>View height placeholder, in&nbsp;points.</p></p>
+            <table>
+            <tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            </table>
+          </dd>
           
-          <tr><td>&nbsp;</td><td>The argument can be <code>NULL</code>.</td></tr>
+          <dt class="arg-name"><code>baseline</code></dt>
+          <dd class="arg-description">
+            <p><em>Type:</em>&nbsp;<code>double*</code></p>
+            <p><p>View baseline, in&nbsp;points.</p></p>
+            <table>
+            <tr><td title="direction: out">The argument will be set by the function.</td></tr>
+            
+            
+            <tr><td>The argument can be <code>NULL</code>.</td></tr>
+            
+            
+            
+            
+            
+            </table>
+          </dd>
           
+
           
-          
-          
-          
-          
-          <tr class="arg-name">
-            <td><code>height</code></td>
-            <td><code>double*</code></td>
-          </tr>
-          <tr class="arg-description">
-            <td>&nbsp;</td>
-            <td><p>View height placeholder, in&nbsp;points.</p></td>
-          </tr>
-          <tr><td>&nbsp;</td><td title="direction: out">The argument will be set by the function.</td></tr>
-          
-          
-          <tr><td>&nbsp;</td><td>The argument can be <code>NULL</code>.</td></tr>
-          
-          
-          
-          
-          
-          
-          <tr class="arg-name">
-            <td><code>baseline</code></td>
-            <td><code>double*</code></td>
-          </tr>
-          <tr class="arg-description">
-            <td>&nbsp;</td>
-            <td><p>View baseline, in&nbsp;points.</p></td>
-          </tr>
-          <tr><td>&nbsp;</td><td title="direction: out">The argument will be set by the function.</td></tr>
-          
-          
-          <tr><td>&nbsp;</td><td>The argument can be <code>NULL</code>.</td></tr>
-          
-          
-          
-          
-          
-          
-          
-        </table>
+        </dl>
       </div>
     </div>
     
