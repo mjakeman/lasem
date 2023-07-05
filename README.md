@@ -1,3 +1,12 @@
+# Superseded by: https://github.com/LasemProject/lasem.
+This fork has discontinued in favour of the new, upstream Lasem project.
+
+All changes have been upstreamed, including the GTK4 demo.
+
+Thank you everyone for your support.
+
+See: https://github.com/LasemProject/lasem.
+
 # Lasem
 [![CI](https://github.com/mjakeman/lasem/actions/workflows/main.yml/badge.svg)](https://github.com/mjakeman/lasem/actions/workflows/main.yml)
 [![Docs](https://img.shields.io/badge/documentation-visit-success)](https://www.mattjakeman.com/lasem/)
